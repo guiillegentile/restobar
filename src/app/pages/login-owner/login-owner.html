@@ -1,0 +1,22 @@
+<div class="wrap">
+    <h1>Dueño — Iniciar sesión</h1>
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <label>Email
+    <input type="email" formControlName="email" placeholder="dueño@tu-resto.com" />
+    </label>
+    <div class="err" *ngIf="form.controls.email.touched && form.controls.email.invalid">Ingresá un email válido</div>
+    
+    
+    <label>Contraseña
+    <input type="password" formControlName="password" placeholder="••••" />
+    </label>
+    <div class="err" *ngIf="form.controls.password.touched && form.controls.password.invalid">Mínimo 4 caracteres</div>
+    
+    
+    <button class="btn" type="submit" [disabled]="loading">{{ loading ? 'Ingresando...' : 'Ingresar' }}</button>
+    <div class="err" *ngIf="error">{{ error }}</div>
+    </form>
+    
+    
+    <a routerLink="/main" class="back">← Volver</a>
+    </div>
