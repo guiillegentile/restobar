@@ -8,7 +8,7 @@ import { Spinner } from "../../components/spinner/spinner";
   selector: 'app-login-page',
   imports: [RouterModule, FormsModule, Spinner],
   templateUrl: './login-page.html',
-  styleUrl: './login-page.scss'
+  styleUrl: './login-page.css'
 })
 export class LoginPage {
 
