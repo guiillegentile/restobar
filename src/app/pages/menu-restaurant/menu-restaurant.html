@@ -7,7 +7,10 @@
         <p>$ {{ item.price }}</p>
       </div>
     </div>
-  
+    <button *ngIf="isOwner" class="btn" (click)="goToNewProduct()">
+      Agregar producto
+    </button>
+        
     <ng-template #noMenu>
       <p>No hay menú disponible.</p>
     </ng-template>

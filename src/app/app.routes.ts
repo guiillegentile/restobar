@@ -4,7 +4,7 @@ import { LoginOwnerComponent } from './pages/login-owner/login-owner';
 import { LoginPage } from './pages/login-client/login-client';
 import { RegisterPage } from './pages/register-client/register-client';
 import { MenuRestaurantPage } from './pages/menu-restaurant/menu-restaurant';
-
+import { NewProduct } from './pages/new-product/new-product';
 export const routes: Routes = [
   {
     path: '',
@@ -30,5 +30,10 @@ export const routes: Routes = [
     path: '**',
     redirectTo: '',
     pathMatch: 'full'
+  },
+  {
+    path: 'new-product/:id',
+    component: NewProduct
   }
+  
 ];

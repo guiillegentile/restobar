@@ -10,12 +10,13 @@ import { Spinner } from "../../components/spinner/spinner";
   templateUrl: './login-page.html',
   styleUrl: './login-page.css'
 })
+
 export class LoginPage {
 
   errorLogin = false;
   authService = inject(AuthService);
   isLoading = false;
-
+    
   async login(form:any){
     console.log(form.value)
     this.errorLogin = false;
@@ -23,6 +24,9 @@ export class LoginPage {
       this.errorLogin = true;
       return
     }
+    localStorage.setItem('role', 'client');
+    this.router.navigate(['/restaurant-page']);
+
     this.isLoading = true;
     await this.authService.login(form.value);
     this.isLoading = false;

@@ -34,7 +34,7 @@ export class LoginOwnerComponent {
     }
 
     this.isLoading = true;
-
+    localStorage.setItem('role', 'owner'); 
     // Llamada al servicio de autenticación del dueño
     await this.authService.loginOwner(form.value);
 

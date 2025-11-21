@@ -1,0 +1,19 @@
+<div class="container">
+    <h2>Nuevo producto </h2>
+  
+    <form #prodForm="ngForm" (ngSubmit)="addProduct(prodForm)">
+  
+      <label>ID</label>
+      <input type="text" name="id" ngModel required>
+  
+      <label>Nombre</label>
+      <input type="text" name="name" ngModel required>
+  
+      <label>Precio</label>
+      <input type="number" name="price" ngModel required>
+  
+      <button [disabled]="prodForm.invalid">Agregar al menú</button>
+    </form>
+  </div>
+  
+  

@@ -10,13 +10,22 @@ import { MenuService } from '../../services/menu-service';
   templateUrl: './menu-restaurant.html',
   styleUrl: './menu-restaurant-page.scss'
 })
-export class MenuRestaurantPage {
 
+export class MenuRestaurantPage {
+  isOwner = false;
+
+constructor() {
+  this.isOwner = localStorage.getItem('role') === 'owner';
+}
+goToNewProduct() {
+  this.router.navigate(['/new-product', this.restaurantId]);
+}
   private route = inject(ActivatedRoute);
   private menuService = inject(MenuService);
 
   restaurantId = this.route.snapshot.params['id'];
   menu = this.menuService.getMenuByRestaurant(this.restaurantId);
 }
+
 
 

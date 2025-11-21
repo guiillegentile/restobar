@@ -4,6 +4,7 @@ import { RestaurantMenu } from '../interfaces/menu';
 @Injectable({
   providedIn: 'root'
 })
+
 export class MenuService {
 
   private menus: RestaurantMenu[] = [
@@ -41,7 +42,14 @@ export class MenuService {
       ]
     }
   ];
+  addProductToMenu(restaurantId: string, product: MenuItem) {
+    const menu = this.getMenuByRestaurant(restaurantId);
 
+    if (menu) {
+      menu.items.push(product);
+    }
+  }
+  
   getMenuByRestaurant(id: string) {
     return this.menus.find(m => m.restaurantId === id);
   }
