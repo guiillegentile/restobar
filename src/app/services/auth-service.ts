@@ -6,21 +6,23 @@ import { LoginData } from '../interfaces/auth';
   providedIn: 'root'
 })
 export class AuthService {
+
   router = inject(Router);
 
   // Token actual en memoria
   token: string | null = localStorage.getItem('token');
 
-  // Guardamos el id del setInterval
+  // Id del intervalo que revisa el token
   revisionTokenInterval?: ReturnType<typeof setInterval>;
 
   constructor() {
-    // Si ya había token guardado, arrancamos la revisión
+    // Si ya había token guardado al iniciar la app, empezamos a revisarlo
     if (this.token) {
       this.revisionTokenInterval = this.revisionToken();
     }
   }
-  
+
+  // ---- LOGIN GENERAL (lo que ya tenías) ----
   async login(loginData: LoginData) {
     const res = await fetch('https://restaurant-api.somee.com/api/', {
       method: 'POST',
@@ -32,22 +34,30 @@ export class AuthService {
       this.token = await res.text();
       localStorage.setItem('token', this.token);
 
-      // Arrancamos el intervalo de revisión si no estaba
+      // Si no había intervalo corriendo, lo arrancamos
       if (!this.revisionTokenInterval) {
         this.revisionTokenInterval = this.revisionToken();
       }
 
       this.router.navigate(['/']);
-    } else {
-      // Acá podrías manejar error de login si querés
-      console.error('Login falló con status', res.status);
     }
   }
 
+  // ---- LOGIN DEL DUEÑO (para usar desde LoginOwnerComponent) ----
+  async loginOwner(formValue: any) {
+    const loginData: LoginData = {
+      email: formValue.email,
+      password: formValue.password
+    };
+
+    // Reutilizamos el login general
+    await this.login(loginData);
+  }
+
+  // ---- LOGOUT (lo que ya tenías, con limpieza del intervalo) ----
   logout() {
     this.token = null;
 
-    // Limpiamos el intervalo si existe
     if (this.revisionTokenInterval) {
       clearInterval(this.revisionTokenInterval);
       this.revisionTokenInterval = undefined;
@@ -57,29 +67,24 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  // Revisa cada 600ms si el token expiró
+  // ---- Revisión periódica del token (lo tuyo, tipado prolijo) ----
   private revisionToken(): ReturnType<typeof setInterval> {
     return setInterval(() => {
       if (this.token) {
-        try {
-          const base64Url = this.token.split('.')[1];
-          const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-          const jsonPayload = decodeURIComponent(
-            window
-              .atob(base64)
-              .split('')
-              .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-              .join('')
-          );
+        const base64Url = this.token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(
+          window
+            .atob(base64)
+            .split('')
+            .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+            .join('')
+        );
 
-          const claims: { exp: number } = JSON.parse(jsonPayload);
+        const claims: { exp: number } = JSON.parse(jsonPayload);
 
-          // exp viene en segundos → lo pasamos a milisegundos
-          if (new Date(claims.exp * 1000) < new Date()) {
-            this.logout();
-          }
-        } catch (e) {
-          console.error('Error al validar token:', e);
+        // exp viene en segundos → multiplicamos por 1000 para pasarlo a ms
+        if (new Date(claims.exp * 1000) < new Date()) {
           this.logout();
         }
       }
