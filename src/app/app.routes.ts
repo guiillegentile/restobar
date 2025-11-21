@@ -1,26 +1,36 @@
 import { Routes } from '@angular/router';
-import path from 'path';
-import { MainPageComponent } from './pages/main-page/main-page';
-import { LoginOwnerComponent } from './pages/login-owner/login-owner';
-import { AccesoRestaurantes } from './pages/acceso-restaurantes/acceso-restaurantes';
-
+import { MainPage } from './pages/main-page/main-page';
+import { LoginOwner } from './pages/login-owner/login-owner';
+import { MenuPage } from './pages/menu-page/menu-page';
+import { Loginclient } from './pages/login-client/login-client';
+import { Resgistreclient } from './pages/resgistre-client/resgistre-client';
 
 export const routes: Routes = [
     {
         path: '',
-        component: MainPageComponent
-    }
-
-    {
+        component: MainPage
+      },
+      {
         path: 'login-owner',
-        component: LoginOwnerComponent
-    },
-
-    {
-        path: 'acceso-restaurantes',
-        component: AccesoRestaurantes
-
-    }
+        component: LoginOwner
+      },
+      {
+        path: 'menu',
+        component: MenuPage
+      },
+      {
+        path: 'login-client',
+        component: LoginClient
+      },
+      {
+        path: 'register-client',
+        component: ResgistreClient
+      },
+      {
+        path: '**',
+        redirectTo: '',
+        pathMatch: 'full'
+      }
 
     
 ];

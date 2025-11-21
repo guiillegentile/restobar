@@ -1,0 +1,48 @@
+.login-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e0e0e0;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  label {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: 0.9rem;
+  }
+  
+  input,
+  select {
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.4rem;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 999px;
+    border: none;
+    background: #1976d2;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+  
+  .error {
+    margin-top: 0.5rem;
+    color: #d32f2f;
+    font-size: 0.85rem;
+  }

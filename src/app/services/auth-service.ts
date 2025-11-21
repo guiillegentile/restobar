@@ -1,56 +1,26 @@
-import { inject, Injectable, OnInit } from '@angular/core';
-import { LoginData } from '../interfaces/auth';
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { User, UserRole } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements OnInit {
-  router = inject(Router);
-  token : null|string = localStorage.getItem("token");
-  revisionTokenInterval:number|undefined;
+export class AuthService {
+  private _currentUser: User | null = null;
 
-  ngOnInit(): void {
-    if (this.token) {
-      this.revisionTokenInterval = this.revisionToken()
+  get currentUser(): User | null {
+    return this._currentUser;
+  }
+
+  login(email: string, password: string, role: UserRole): boolean {
+    // Para el TP: acepta cualquier combinación
+    if (email && password) {
+      this._currentUser = { email, role };
+      return true;
     }
-  }
-   
-  async login(loginData: LoginData){
-    const res = await fetch("https://agenda-api.somee.com/api/authentication/authenticate",
-      {
-        method: "POST",
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(loginData)
-      }
-    )
-    if(res.ok){
-      this.token = await res.text()
-      localStorage.setItem("token",this.token);
-      this.router.navigate(["/"])
-    }
+    return false;
   }
 
-  logout(){
-    this.token = null;
-    localStorage.removeItem("token");
-    this.router.navigate(["/login"]);
-  }
-
-  revisionToken() {
-    return setInterval(() => {
-      if (this.token) {
-        const base64Url = this.token.split('.')[1];
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
-          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
-
-        const claims: { exp: number } = JSON.parse(jsonPayload);
-        if (new Date(claims.exp * 1000) < new Date()) {
-          this.logout()
-        }
-      }
-    }, 600)
+  logout() {
+    this._currentUser = null;
   }
 }

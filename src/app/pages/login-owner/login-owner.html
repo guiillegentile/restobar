@@ -1,1 +1,45 @@
-<p>login-owner works!</p>
+<div class="login-container">
+    <h2>Iniciar sesión como dueño</h2>
+  
+    <form (ngSubmit)="onSubmit()">
+      <label>
+        Email
+        <input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          required
+        />
+      </label>
+  
+      <label>
+        Contraseña
+        <input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          required
+        />
+      </label>
+  
+      <label>
+        Restaurante
+        <select
+          [(ngModel)]="selectedRestaurantId"
+          name="restaurant"
+          required
+        >
+          <option [ngValue]="null">Seleccioná un restaurante</option>
+          <option *ngFor="let r of restaurants" [ngValue]="r.id">
+            {{ r.name }}
+          </option>
+        </select>
+      </label>
+  
+      <button type="submit">Iniciar sesión</button>
+    </form>
+  
+    <p class="error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+  </div>
