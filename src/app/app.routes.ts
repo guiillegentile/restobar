@@ -20,7 +20,7 @@ export const routes: Routes = [
   },
   {
     path: 'login-client',
-    component: LoginPage    // 👈 usa LoginPage, no LoginClient
+    component: LoginPage   
   },
   {
     path: 'register-client',
