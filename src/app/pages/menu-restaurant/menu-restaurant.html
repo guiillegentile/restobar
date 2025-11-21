@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>Menú del restaurante</h2>
+  
+    <div *ngIf="menu; else noMenu">
+      <div *ngFor="let item of menu.items" class="menu-item">
+        <h3>{{ item.name }}</h3>
+        <p>$ {{ item.price }}</p>
+      </div>
+    </div>
+  
+    <ng-template #noMenu>
+      <p>No hay menú disponible.</p>
+    </ng-template>
+  </div>
+  

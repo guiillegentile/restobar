@@ -24,7 +24,7 @@ export class MenuService {
         { id: '1', name: 'Sushi Roll Salmón', price: 15200 },
         { id: '2', name: 'Nigiri Langostino', price: 14800 },
         { id: '3', name: 'Philadelphia', price: 13500 },
-        { id: '4', name: 'Salmon Grill', price: 14000 }
+        { id: '4', name: 'Salmon Grill', price: 14000 },
         { id: '5', name: 'Sushi Vegetariano', price: 13500 },
         { id: '6', name: 'Sushi Rebozados', price: 14500 }
       ]

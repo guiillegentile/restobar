@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ResgistreClient } from './resgistre-client';
+import { RegisterClient } from './register-client';
 
 describe('ResgistreClient', () => {
-  let component: ResgistreClient;
-  let fixture: ComponentFixture<ResgistreClient>;
+  let component: RegisterClient;
+  let fixture: ComponentFixture<RegisterClient>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ResgistreClient]
+      imports: [RegisterClient]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ResgistreClient);
+    fixture = TestBed.createComponent(RegisterClient);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

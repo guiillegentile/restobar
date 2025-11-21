@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './restaurant-page.html',
-  styleUrl: './restaurant-page.scss'
+  styleUrl: './restaurant-page.css'
 })
 export class RestaurantMenuPage {
   private restaurantService = inject(RestaurantService);
@@ -22,7 +22,7 @@ export class RestaurantMenuPage {
   }
 
   goToRestaurant(id: string) {
-    this.router.navigate(['/menu’, id]);
+    this.router.navigate(['/menu', id]); 
   }
 }
 

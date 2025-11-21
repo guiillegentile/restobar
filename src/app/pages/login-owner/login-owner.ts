@@ -1,59 +1,50 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { RestaurantService } from '../../services/restaurant.service';
-import { Restaurant } from '../../models/restaurant';
+import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth-service';
+import { RestaurantService } from '../../services/restaurant-service';
+import { Spinner } from '../../components/spinner/spinner';
 
 @Component({
   selector: 'app-login-owner',
+  standalone: true,
+  imports: [FormsModule, RouterModule, Spinner],
   templateUrl: './login-owner.html',
-  styleUrls: ['./login-owner.scss']
+  styleUrl: './login-owner.scss'
 })
-export class LoginOwner {
-  email = '';
-  password = '';
-  selectedRestaurantId: number | null = null;
+export class LoginOwnerComponent {
 
-  restaurants: Restaurant[] = [];
+  errorLogin = false;
+  isLoading = false;
 
-  errorMessage = '';
+  authService = inject(AuthService);
+  router = inject(Router);
+  restaurantService = inject(RestaurantService);
 
-  constructor(
-    private authService: AuthService,
-    private restaurantService: RestaurantService,
-    private router: Router
-  ) {
-    this.restaurants = this.restaurantService.getAll();
-  }
+  // Lista de restaurantes para el <select>
+  restaurants = this.restaurantService.getRestaurants();
 
-  onSubmit() {
-    this.errorMessage = '';
+  async loginOwner(form: any) {
+    this.errorLogin = false;
 
-    if (!this.email || !this.password || !this.selectedRestaurantId) {
-      this.errorMessage = 'Completá todos los campos.';
+    // Validaciones básicas
+    if (!form.value.email || !form.value.password || !form.value.restaurantId) {
+      this.errorLogin = true;
       return;
     }
 
-    const restaurant = this.restaurants.find(
-      r => r.id === Number(this.selectedRestaurantId)
-    );
+    this.isLoading = true;
 
-    if (!restaurant) {
-      this.errorMessage = 'Seleccioná un restaurante válido.';
-      return;
-    }
+    // Llamada al servicio de autenticación del dueño
+    await this.authService.loginOwner(form.value);
 
-    const ok = this.authService.login(this.email, this.password, 'OWNER');
+    this.isLoading = false;
 
-    if (!ok) {
-      this.errorMessage = 'Error al iniciar sesión.';
-      return;
-    }
+    // OJO: en el HTML el name es "restaurantId"
+    const restaurantId = form.value.restaurantId;
 
-    // Guardamos qué restaurant es el del dueño
-    this.restaurantService.setCurrentRestaurant(restaurant);
-
-    // Redirigimos al menú de ese restaurant
-    this.router.navigate(['/menu']);
+    // Navegar al menú del restaurante del dueño
+    // (asumiendo que la ruta es algo como: path: 'menu/:id', component: MenuPage)
+    this.router.navigate(['/menu', restaurantId]);
   }
 }

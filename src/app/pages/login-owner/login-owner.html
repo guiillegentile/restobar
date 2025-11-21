@@ -1,45 +1,48 @@
-<div class="login-container">
-    <h2>Iniciar sesión como dueño</h2>
-  
-    <form (ngSubmit)="onSubmit()">
-      <label>
-        Email
-        <input
-          type="email"
-          [(ngModel)]="email"
-          name="email"
-          required
-        />
-      </label>
-  
-      <label>
-        Contraseña
-        <input
-          type="password"
-          [(ngModel)]="password"
-          name="password"
-          required
-        />
-      </label>
-  
-      <label>
-        Restaurante
-        <select
-          [(ngModel)]="selectedRestaurantId"
-          name="restaurant"
-          required
-        >
-          <option [ngValue]="null">Seleccioná un restaurante</option>
-          <option *ngFor="let r of restaurants" [ngValue]="r.id">
-            {{ r.name }}
-          </option>
-        </select>
-      </label>
-  
-      <button type="submit">Iniciar sesión</button>
-    </form>
-  
-    <p class="error" *ngIf="errorMessage">
-      {{ errorMessage }}
-    </p>
-  </div>
+<div id="container" class="card">
+  <h1>Iniciar sesión como dueño</h1>
+
+  <form #loginForm="ngForm" (ngSubmit)="loginOwner(loginForm)">
+    
+    <div>
+      <label for="email">Correo electrónico</label>
+      <input id="email" name="email" type="email" ngModel #email="ngModel" required autocomplete="email">
+      @if (email.invalid && !email.pristine) {
+        <p class="error">Debe colocar un correo electrónico.</p>
+      }
+    </div>
+
+    <div>
+      <label for="password">Contraseña</label>
+      <input id="password" name="password" type="password" ngModel #password="ngModel" minlength="4" autocomplete="current-password">
+      @if (password.invalid && !password.pristine) {
+        <p class="error">Debe colocar una contraseña de al menos 4 caracteres.</p>
+      }
+    </div>
+
+  <div>
+      <label for="restaurantId">Su restaurante</label>
+
+      <select id="restaurantId" name="restaurantId" ngModel #restaurantId="ngModel" required>
+        <option value="" disabled selected>Seleccione su restaurante</option>
+        <option *ngFor="let r of restaurants" [value]="r.id">
+          {{ r.name }}
+        </option>
+      </select>
+
+      @if (restaurantId.invalid && !restaurantId.pristine) {
+        <p class="error">Debe seleccionar un restaurante.</p>
+      }
+    </div>
+
+    <button [disabled]="isLoading || loginForm.invalid">Iniciar sesión</button>
+
+    @if(isLoading){
+      <app-spinner></app-spinner>
+    }
+
+    @if (errorLogin) {
+      <p class="error">Datos incorrectos, intente nuevamente.</p>
+    }
+
+  </form>
+</div>
