@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { MainPage } from './pages/main-page/main-page';
+import { LoginOwner } from './pages/login-owner/login-owner';
 import { LoginClient } from './pages/login-client/login-client';
 import { RegisterClient } from './pages/register-client/register-client';
 import { LoginOwner} from './pages/login-owner/login-owner';
