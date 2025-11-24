@@ -7,8 +7,8 @@ import { Spinner } from '../../components/spinner/spinner';
 @Component({
   selector: 'app-register-page',
   imports: [RouterModule,FormsModule,Spinner],
-  templateUrl: './register-page.html',
-  styleUrl: './register-page.scss'
+  templateUrl: './register-client.html',
+  styleUrl: './register-client.css'
 })
 export class RegisterPage {
   errorRegister=false;
@@ -17,7 +17,6 @@ export class RegisterPage {
   router = inject(Router);
 
   async register(form:any){
-    console.log(form.value);
     this.errorRegister = false; 
     if(!form.value.email || 
       !form.value.password || 
@@ -37,3 +36,4 @@ export class RegisterPage {
     this.errorRegister = true;
   }
 }
+  
