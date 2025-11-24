@@ -1,1 +1,59 @@
-<p>product-detail works!</p>
+<div class="container">
+  
+
+  @if (!isLoading && product) {
+    
+    
+    <div class="product-card">
+      
+      
+      <div class="product-header">
+        <div class="img-placeholder">
+          <span>🍽️</span>
+        </div>
+        
+        <h1 class="product-title">{{ product.name }}</h1>
+        <span class="price-badge">$ {{ product.price | number:'1.0-0' }}</span>
+      </div>
+
+      <hr class="divider">
+
+      
+      <div class="product-body">
+        <h3>Detalles</h3>
+        <p class="description">
+          {{ product.description || 'Este producto no cuenta con una descripción detallada por el momento.' }}
+        </p>
+      </div>
+
+      
+      <div class="spacer"></div>
+
+    </div>
+
+    
+    <div class="cart-controls-container">
+      
+      
+      <div class="quantity-selector">
+        <button class="btn-qty" (click)="decreaseQty()" [disabled]="quantity <= 1">−</button>
+        <span class="qty-number">{{ quantity }}</span>
+        <button class="btn-qty" (click)="increaseQty()">+</button>
+      </div>
+
+      
+      <button class="btn-add-cart" (click)="addToCart()">
+        <span class="btn-label">Agregar al pedido</span>
+        <span class="total-price">$ {{ (product.price * quantity) | number:'1.0-0' }}</span>
+      </button>
+
+    </div>
+
+  } @else if (!isLoading && error) {
+    <div class="error-container">
+      <h3>😕 Ups...</h3>
+      <p>No pudimos encontrar el producto.</p>
+    </div>
+  }
+
+</div>
