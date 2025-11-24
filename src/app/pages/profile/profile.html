@@ -55,9 +55,6 @@
       <p class="subtext">Dejar en blanco para no modificar la clave.</p>
     </div>
 
-    @if(errorEnBack) {
-      <p class="error">Error al actualizar. Intente nuevamente.</p>
-    }
 
     <button [disabled]="profileForm.invalid || isLoading">
       Guardar Cambios
