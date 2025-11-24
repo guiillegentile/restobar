@@ -4,7 +4,14 @@ import { LoginOwnerComponent } from './pages/login-owner/login-owner';
 import { LoginPage } from './pages/login-client/login-client';
 import { RegisterPage } from './pages/register-client/register-client';
 import { MenuRestaurantPage } from './pages/menu-restaurant/menu-restaurant';
-import { NewProduct } from './pages/new-product/new-product';
+import { NewProductPage } from './pages/new-product/new-product';
+import { RestaurantMenuPage } from './pages/restaurant-page/restaurant-page';
+import { Categories } from './pages/categories/categories';
+import { Profile } from './pages/profile/profile';
+import { ProductDetail } from './pages/product-detail/product-detail';
+import { Cart } from './pages/cart/cart';
+
+
 export const routes: Routes = [
   {
     path: '',
@@ -27,13 +34,37 @@ export const routes: Routes = [
     component: RegisterPage
   },
   {
-    path: '**',
-    redirectTo: '',
-    pathMatch: 'full'
+    path: 'restaurant-page',
+    component: RestaurantMenuPage
   },
   {
     path: 'new-product/:id',
-    component: NewProduct
+    component: NewProductPage
+  },
+  {
+    path: 'edit-product/:id',
+    component: NewProductPage
+  },
+  {
+    path: 'categories',
+    component: Categories
+  },
+  {
+    path: 'profile',
+    component: Profile
+  },
+  {
+    path: 'product-detail/:id',
+    component: ProductDetail
+  },
+  {
+    path: 'cart',
+    component: Cart
+  },
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full'
   }
   
 ];
