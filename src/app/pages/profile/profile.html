@@ -1,1 +1,76 @@
-<p>profile works!</p>
+<div class="container">
+  
+  <div class="header">
+    <h2>Mi Perfil y Restaurante</h2>
+  </div>
+
+  <div class="form-card">
+    <h3>Editar Datos</h3>
+
+  <form (ngSubmit)="updateProfile(profileForm)" #profileForm="ngForm">
+
+    <div>
+      <label for="restaurantName">Nombre del Restaurante*</label>
+      <input id="restaurantName" name="restaurantName" type="text" ngModel [(ngModel)]="profileData.restaurantName" required="true" minlength="2" maxlength="40" #restName="ngModel">
+      @if(restName.dirty && restName.invalid) {
+        <p class="error">El nombre del restaurante es obligatorio.</p>
+      }
+    </div>
+
+    <div>
+      <label for="firstName">Nombre (Dueño)*</label>
+      <input id="firstName" name="firstName" type="text" ngModel [(ngModel)]="profileData.firstName" required="true" minlength="2" maxlength="30" #firstField="ngModel">
+      @if(firstField.dirty && firstField.invalid) {
+        <p class="error">El nombre es obligatorio y debe tener al menos 2 caracteres.</p>
+      }
+    </div>
+
+    <div>
+      <label for="lastName">Apellido*</label>
+      <input id="lastName" name="lastName" type="text" ngModel  [(ngModel)]="profileData.lastName" required="true" minlength="2" maxlength="30" #lastField="ngModel">
+      @if(lastField.dirty && lastField.invalid) {
+        <p class="error">El apellido es obligatorio.</p>
+      }
+    </div>
+
+    <div>
+      <label for="address">Dirección del Local*</label>
+      <input id="address" name="address" type="text"  ngModel  [(ngModel)]="profileData.address" required="true" minlength="5" maxlength="60" #addressField="ngModel">
+      @if(addressField.dirty && addressField.invalid) {
+        <p class="error">La dirección es obligatoria y debe tener al menos 5 caracteres.</p>
+      }
+    </div>
+
+    <div>
+      <label for="phoneNumber">Teléfono*</label>
+      <input id="phoneNumber" name="phoneNumber" type="tel"  ngModel  [(ngModel)]="profileData.phoneNumber" required="true" minlength="6" maxlength="20" #phoneField="ngModel">
+      @if(phoneField.dirty && phoneField.invalid) {
+        <p class="error">El teléfono es obligatorio.</p>
+      }
+    </div>
+
+    <div>
+      <label for="password">Nueva contraseña</label>
+      <input id="password" name="password" type="password"  ngModel [(ngModel)]="profileData.password" minlength="4" maxlength="40">
+      <p class="subtext">Dejar en blanco para no modificar la clave.</p>
+    </div>
+
+    @if(errorEnBack) {
+      <p class="error">Error al actualizar. Intente nuevamente.</p>
+    }
+
+    <button [disabled]="profileForm.invalid || isLoading">
+      Guardar Cambios
+    </button>
+
+  </form>
+
+  <hr>
+
+  <div class="danger">
+    <h3>Eliminar Cuenta</h3>
+    <p>Esta accion eliminará tu usuario, restaurante y todos los productos.</p>
+    <button class="danger-btn" (click)="deleteAccount()">Eliminar mi cuenta permanente </button>
+  </div>
+
+</div>

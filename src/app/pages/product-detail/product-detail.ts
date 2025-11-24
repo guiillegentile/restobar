@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MenuService } from '../../services/menu-service';
-import {  CartService } from './cart';
+import { CartService } from './cart';
 import { CommonModule } from '@angular/common';
 
 @Component({
