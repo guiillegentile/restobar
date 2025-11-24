@@ -1,1 +1,62 @@
-<p>categories works!</p>
+<div class="container">
+
+  <div class="header">
+    <h2>Gestión de Categorías</h2>
+  </div>
+
+  <div class="form-card">
+    <h3>{{ isEditing ? 'Editar Categoría' : 'Nueva Categoría' }}</h3>
+    
+    <form #catForm="ngForm" (ngSubmit)="saveCategory(catForm)">
+      
+      <div class="form-group">
+        <label for="name">Nombre de la categoría</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          [(ngModel)]="categoryData.name" 
+          placeholder="Ej: Bebidas, Postres, Entradas..." 
+          required>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" [disabled]="catForm.invalid" [class.btn-update]="isEditing">
+          {{ isEditing ? 'Guardar Cambios' : 'Agregar Categoría' }}
+        </button>
+
+        @if(isEditing){
+          <button type="button" class="btn-cancel" (click)="cancelEdit()">
+            Cancelar Edición
+          </button>
+        }
+      </div>
+
+    </form>
+  </div>
+
+  <hr class="divider">
+
+  <h3>Listado Actual</h3>
+
+  <div class="category-list">
+    @for(cat of categories; track $index) {
+      <div class="category-item">
+        <span class="cat-name">{{ cat.name }}</span>
+        
+        <div class="item-actions">
+          <button class="btn-icon edit" (click)="selectCategoryToEdit(cat)" title="Editar">
+            ✏️
+          </button>
+          
+          <button class="btn-icon delete" (click)="deleteCategory(cat.id)" title="Eliminar">
+            🗑️
+          </button>
+        </div>
+      </div>
+    } @empty {
+      <p class="empty-state">No tienes categorías creadas aún.</p>
+    }
+  </div>
+
+</div>

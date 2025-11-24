@@ -1,16 +1,18 @@
 <div class="container">
     <h2>Restaurantes disponibles</h2>
-  
-    <div *ngFor="let rest of restaurants" class="restaurant-item">   //Es una directiva estructural de Angular que sirve para iterar (recorrer) una lista.
-      <div class="info">
-        <h3>{{ rest.name }}</h3>
-        <p>{{ rest.address }}</p>
+    @for(rest of restaurants; track rest.id){
+      <div class="restaurant-item">
+        <div class="info">
+          <h3>{{ rest.name }}</h3>
+          <p>{{ rest.address }}</p>
+        </div>
+    
+        <button class="btn" (click)="goToRestaurant(rest.id)">
+          Ver menú
+        </button>
       </div>
-  
-      <button class="btn" (click)="goToRestaurant(rest.id)">
-        Ver menú
-      </button>
-    </div>
+      
+    }
   
   </div>
   
