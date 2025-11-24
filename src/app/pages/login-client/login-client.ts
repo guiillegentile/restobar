@@ -1,18 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { AuthService } from "../../services/auth-service";
 import { Spinner } from "../../components/spinner/spinner";
 
 @Component({
   selector: 'app-login-page',
-  imports: [RouterModule, FormsModule, Spinner],
-  templateUrl: './login-page.html',
-  styleUrl: './login-page.css'
+  imports: [RouterModule, FormsModule, Spinner, RouterLink],
+  templateUrl: './login-client.html',
+  styleUrl: './login-client.css'
 })
 
 export class LoginPage {
-
+  router = inject(Router);
   errorLogin = false;
   authService = inject(AuthService);
   isLoading = false;
@@ -25,11 +25,10 @@ export class LoginPage {
       return
     }
     localStorage.setItem('role', 'client');
-    this.router.navigate(['/restaurant-page']);
-
     this.isLoading = true;
     await this.authService.login(form.value);
     this.isLoading = false;
     this.errorLogin = true;
+    this.router.navigate(['/restaurant-page']);
   }
 }
