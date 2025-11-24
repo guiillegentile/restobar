@@ -1,0 +1,115 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: #fff8f0; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 400px;
+  background: #ffffff;
+  padding: 35px 40px;
+  border-radius: 22px;
+  box-shadow: 0 8px 25px rgba(255, 140, 0, 0.2);  
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card h1 {
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #ff7a00; 
+}
+
+
+.card form div {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.card label {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 5px;
+}
+
+.card input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 2px solid #ffdda8; 
+  font-size: 15px;
+  outline: none;
+  transition: all 0.25s ease;
+  background: #fff8ef;
+}
+
+.card input:focus {
+  border-color: #ff8a00; 
+  background: #fff3e3;
+  box-shadow: 0 0 6px rgba(255, 136, 0, 0.4);
+}
+
+
+.error {
+  font-size: 13px;
+  color: #d9534f;
+  margin-top: 5px;
+}
+
+
+.card button {
+  width: 100%;
+  padding: 13px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(135deg, #ff7a00, #ff9533);
+  transition: all 0.25s ease;
+}
+
+.card button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 136, 0, 0.4);
+}
+
+.card button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.card p {
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.card a {
+  color: #ff7a00;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
