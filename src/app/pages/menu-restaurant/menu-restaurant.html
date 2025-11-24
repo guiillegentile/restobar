@@ -1,18 +1,94 @@
 <div class="container">
-    <h2>Menú del restaurante</h2>
-  
-    <div *ngIf="menu; else noMenu">
-      <div *ngFor="let item of menu.items" class="menu-item">
-        <h3>{{ item.name }}</h3>
-        <p>$ {{ item.price }}</p>
+  <h2 class="page-title">Menú del restaurante</h2>
+
+  @if(menu && menu.items.length > 0) {
+    <div class="menu-grid">
+      @for(item of menu.items; track item.id){
+        
+        <div class="menu-card" [class.highlight-fav]="item.isFavorite">
+          
+          <div class="card-content">
+            
+            <div class="card-header">
+              <h3 class="product-name">{{ item.name }}</h3>
+              
+              <button 
+                class="btn-favorite" 
+                [class.active]="item.isFavorite" 
+                (click)="toggleFavorite($event, item.id)" 
+                title="Agregar a favoritos">
+                {{ item.isFavorite ? '❤️' : '🤍' }}
+              </button>
+            </div>
+
+            <div class="badges-container">
+              @if(item.isHappyHour) {
+                <span class="badge badge-happy">🍻 Happy Hour</span>
+              }
+              
+              @if(item.discount && item.discount > 0) {
+                <span class="badge badge-discount">🏷️ {{ item.discount }}% OFF</span>
+              }
+            </div>
+            
+            <div class="price-row">
+              @if(item.discount && item.discount > 0) {
+                <span class="old-price">$ {{ item.price | number:'1.0-0' }}</span>
+                <span class="new-price">$ {{ item.price - (item.price * item.discount / 100) | number:'1.0-0' }}</span>
+              } @else {
+                <p class="regular-price">$ {{ item.price | number:'1.0-0' }}</p>
+              }
+            </div>
+
+            <span class="link-detail" (click)="viewDetail(item.id)">Ver detalle →</span>
+          </div>
+
+          @if(isOwner){
+            <div class="owner-actions">
+              <button class="btn-action btn-edit" (click)="editProduct(item.id)">
+                ✏️ Editar
+              </button>
+              <button class="btn-action btn-delete" (click)="deleteProduct(item.id)">
+                🗑️ Eliminar
+              </button>
+            </div>
+          }
+
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="empty-state">
+      <p>No hay productos en el menú todavía.</p>
+    </div>
+  }
+
+  @if(isOwner){
+    <hr class="divider">
+    <div class="admin-panel">
+      <h3>🛠️ Panel de Administración</h3>
+      
+      <div class="admin-grid">
+        <button class="btn-admin btn-primary" (click)="goToNewProduct()">
+          + Nuevo Producto
+        </button>
+
+        <button class="btn-admin btn-secondary" (click)="goToCategories()">
+          📂 Categorías
+        </button>
+
+        <button class="btn-admin btn-danger-outline" (click)="goToProfile()">
+          ⚙️ Mi Cuenta
+        </button>
       </div>
     </div>
-    <button *ngIf="isOwner" class="btn" (click)="goToNewProduct()">
-      Agregar producto
+  } @else {
+    <button class="btn-cart-fab" (click)="goToCart()">
+      🛒
     </button>
-        
-    <ng-template #noMenu>
-      <p>No hay menú disponible.</p>
-    </ng-template>
-  </div>
-  
+  }
+
+  <ng-template #noMenu>
+    <p>No hay menú disponible.</p>
+  </ng-template>
+</div>
