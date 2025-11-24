@@ -45,6 +45,39 @@ export class MenuService {
         { id: '17', name: 'Lomo grillado con papas noisette', price: 21000 },
         { id: '18', name: '½ Cucharrasco', price: 12000 }
       ]
+    },
+    {
+      restaurantId: '4',
+      items: [
+        { id: '19', name: 'Capuccino', price: 7000 },
+        { id: '20', name: 'Cortado', price: 5000 },
+        { id: '21', name: 'Desayuno Campo: Dos tostadas con mermelada y queso , y una infusión', price: 13500 },
+        { id: '22', name: 'Avocado Toast', price: 12000 },
+        { id: '23', name: 'Submarino', price: 3500},
+        { id: '24', name: 'Medialunas', price: 1000 }
+      ]
+    },
+    {
+      restaurantId: '5',
+      items: [
+        { id: '25', name: 'Ravioles de verdura', price: 18000 },
+        { id: '26', name: 'Pasta Negra', price: 17500 },
+        { id: '27', name: 'Sorrentinos de Jamón y Queso', price: 13500 },
+        { id: '28', name: 'Fideos con mariscos', price: 20000 },
+        { id: '29', name: 'Canelones de verdura', price: 19000 },
+        { id: '30', name: 'Ñoquis de salmon', price: 17000 }
+      ]
+    },
+    {
+      restaurantId: '6',
+      items: [
+        { id: '31', name: 'Fric Burger', price: 11000 },
+        { id: '32', name: 'MacBurger', price: 7500 },
+        { id: '33', name: 'Vegguie Burger', price: 13500 },
+        { id: '34', name: 'Super Triple', price: 20000 },
+        { id: '35', name: 'Burger Asada', price: 21000 },
+        { id: '36', name: 'CheBurger', price: 12000 }
+      ]
     }
   ];
   addProductToMenu(restaurantId: string, product: MenuItem) {
