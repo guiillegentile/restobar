@@ -1,6 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginData } from '../interfaces/auth';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,53 +10,51 @@ import { LoginData } from '../interfaces/auth';
 export class AuthService {
 
   router = inject(Router);
-
-  // Token actual en memoria
+  http = inject(HttpClient);
+  
   token: string | null = localStorage.getItem('token');
 
-  // Id del intervalo que revisa el token
+  
   revisionTokenInterval?: ReturnType<typeof setInterval>;
 
   constructor() {
-    // Si ya había token guardado al iniciar la app, empezamos a revisarlo
     if (this.token) {
       this.revisionTokenInterval = this.revisionToken();
     }
   }
 
-  // ---- LOGIN GENERAL (lo que ya tenías) ----
-  async login(loginData: LoginData) {
-    const res = await fetch('https://restaurant-api.somee.com/api/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(loginData)
-    });
-
-    if (res.ok) {
-      this.token = await res.text();
-      localStorage.setItem('token', this.token);
-
-      // Si no había intervalo corriendo, lo arrancamos
+async login(loginData: LoginData) {
+    try {
+      const response: any = await firstValueFrom(
+        this.http.post('https://w370351.ferozo.com/api/Authentication/login', loginData, {
+           responseType: 'text'
+        })
+      );
+      const responseObj = JSON.parse(response);
+      this.token = responseObj.token
+      localStorage.setItem('token', this.token ?? '');
+      
       if (!this.revisionTokenInterval) {
-        this.revisionTokenInterval = this.revisionToken();
+         this.revisionTokenInterval = this.revisionToken();
       }
 
-      this.router.navigate(['/']);
+    } catch (error) {
+      console.error('Error en login:', error);
     }
   }
 
-  // ---- LOGIN DEL DUEÑO (para usar desde LoginOwnerComponent) ----
+  
   async loginOwner(formValue: any) {
     const loginData: LoginData = {
       email: formValue.email,
       password: formValue.password
     };
 
-    // Reutilizamos el login general
+    
     await this.login(loginData);
   }
 
-  // ---- LOGOUT (lo que ya tenías, con limpieza del intervalo) ----
+  
   logout() {
     this.token = null;
 
@@ -67,7 +67,7 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  // ---- Revisión periódica del token (lo tuyo, tipado prolijo) ----
+  
   private revisionToken(): ReturnType<typeof setInterval> {
     return setInterval(() => {
       if (this.token) {
@@ -83,7 +83,7 @@ export class AuthService {
 
         const claims: { exp: number } = JSON.parse(jsonPayload);
 
-        // exp viene en segundos → multiplicamos por 1000 para pasarlo a ms
+        
         if (new Date(claims.exp * 1000) < new Date()) {
           this.logout();
         }

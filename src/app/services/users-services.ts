@@ -5,9 +5,9 @@ import { User } from '../interfaces/user';
   providedIn: 'root'
 })
 export class UsersService {
-  
   async register(registerData:User){
-    return await fetch("https://agenda-api.somee.com/api/Users", 
+    console.log(registerData)
+    return await fetch("https://w370351.ferozo.com/api/users", 
       {
         method:"POST",
         headers: {

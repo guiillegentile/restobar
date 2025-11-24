@@ -1,11 +1,15 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Restaurant } from '../interfaces/restaurants';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestaurantService {
 
+  private _apiUrl = 'https://w370351.ferozo.com/api/products';
+  private _httpClient = inject(HttpClient);
   private restaurants: Restaurant[] = [
     { id: '1', name: 'Pizzería Don Atilio', address: 'Av. Pellegrini 320' },
     { id: '2', name: 'Sushi House', address: 'Belgrano 450' },
@@ -17,4 +21,5 @@ export class RestaurantService {
   getRestaurants(): Restaurant[] {
     return this.restaurants;
   }
+
 }
