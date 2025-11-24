@@ -8,18 +8,7 @@
 
     <div>
       <label for="id">ID*</label>
-      <input 
-        id="id"
-        name="id"
-        type="text"
-        ngModel
-        [(ngModel)]="productData.id"
-        required="true"
-        minlength="1"
-        maxlength="30"
-        [disabled]="isEditMode"
-        #idField="ngModel"
-      >
+      <input id="id" name="id" type="text" ngModel [(ngModel)]="productData.id" required="true" minlength="1" maxlength="10" [disabled]="isEditMode" #idField="ngModel" >
       @if(idField.dirty && idField.invalid) {
         <p class="error">El ID es obligatorio.</p>
       }
@@ -27,17 +16,7 @@
 
     <div>
       <label for="name">Nombre*</label>
-      <input 
-        id="name"
-        name="name"
-        type="text"
-        ngModel
-        [(ngModel)]="productData.name"
-        required="true"
-        minlength="2"
-        maxlength="40"
-        #nameField="ngModel"
-      >
+      <input id="name" name="name" type="text" ngModel [(ngModel)]="productData.name" required="true" minlength="2" maxlength="40" #nameField="ngModel">
       @if(nameField.dirty && nameField.invalid) {
         <p class="error">El nombre es obligatorio y debe tener al menos 2 caracteres.</p>
       }
@@ -45,16 +24,7 @@
 
     <div>
       <label for="price">Precio*</label>
-      <input 
-        id="price"
-        name="price"
-        type="number"
-        ngModel
-        [(ngModel)]="productData.price"
-        required="true"
-        min="1"
-        #priceField="ngModel"
-      >
+      <input id="price" name="price" type="number" ngModel [(ngModel)]="productData.price" required="true" min="1" #priceField="ngModel">
       @if(priceField.dirty && priceField.invalid) {
         <p class="error">El precio es obligatorio y debe ser mayor a 0.</p>
       }
