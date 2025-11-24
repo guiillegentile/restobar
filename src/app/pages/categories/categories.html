@@ -41,19 +41,21 @@
 
   <div class="category-list">
     @for(cat of categories; track $index) {
+
       <div class="category-item">
         <span class="cat-name">{{ cat.name }}</span>
         
         <div class="item-actions">
           <button class="btn-icon edit" (click)="selectCategoryToEdit(cat)" title="Editar">
-            ✏️
+            <i class="fa-regular fa-pen-to-square"></i>
           </button>
           
           <button class="btn-icon delete" (click)="deleteCategory(cat.id)" title="Eliminar">
-            🗑️
+            <i class="fa-regular fa-trash-can"></i>
           </button>
         </div>
       </div>
+
     } @empty {
       <p class="empty-state">No tienes categorías creadas aún.</p>
     }
