@@ -24,9 +24,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
+            "ssr": false
             }
           },
           "configurations": {
