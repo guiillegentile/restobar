@@ -30,7 +30,9 @@
             <span class="item-subtotal">$ {{ item.subtotal | number:'1.0-0' }}</span>
             
             <!-- Botón Eliminar -->
-            <button class="btn-remove" (click)="removeItem(item)">🗑️</button>
+            <button class="btn-remove" (click)="removeItem(item)">
+              <i class="fa-solid fa-trash"></i>
+            </button>
           </div>
 
         </div>
@@ -44,9 +46,7 @@
         <span>Subtotal</span>
         <span>$ {{ total | number:'1.0-0' }}</span>
       </div>
-      
-      <!-- Si tuvieras costo de envío podrías sumarlo aquí -->
-      
+
       <div class="total-row">
         <span>Total</span>
         <span class="total-amount">$ {{ total | number:'1.0-0' }}</span>
@@ -61,7 +61,9 @@
     
     <!-- ESTADO VACÍO -->
     <div class="empty-state">
-      <div class="icon">🛒</div>
+      <div class="icon">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </div>
       <h3>Tu carrito está vacío</h3>
       <p>¡Agrega algunas cosas deliciosas del menú!</p>
     </div>
