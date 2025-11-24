@@ -23,9 +23,7 @@
             ],
             "styles": [
               "src/styles.css"
-            ],
-            
-            "ssr": false
+            ]
           },
           "configurations": {
             "production": {
@@ -89,8 +87,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": "6db2167d-4bd9-4179-aeec-6a1fc26e785b"
   }
 }
