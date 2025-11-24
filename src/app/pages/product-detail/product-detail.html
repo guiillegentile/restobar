@@ -1,15 +1,12 @@
 <div class="container">
   
-
   @if (!isLoading && product) {
-    
     
     <div class="product-card">
       
-      
       <div class="product-header">
         <div class="img-placeholder">
-          <span>🍽️</span>
+          <i class="fa-regular fa-utensils"></i>
         </div>
         
         <h1 class="product-title">{{ product.name }}</h1>
@@ -18,7 +15,6 @@
 
       <hr class="divider">
 
-      
       <div class="product-body">
         <h3>Detalles</h3>
         <p class="description">
@@ -26,34 +22,40 @@
         </p>
       </div>
 
-      
       <div class="spacer"></div>
 
     </div>
 
-    
     <div class="cart-controls-container">
-      
-      
+
       <div class="quantity-selector">
-        <button class="btn-qty" (click)="decreaseQty()" [disabled]="quantity <= 1">−</button>
+        <button class="btn-qty" (click)="decreaseQty()" [disabled]="quantity <= 1">
+          <i class="fa-regular fa-minus"></i>
+        </button>
+
         <span class="qty-number">{{ quantity }}</span>
-        <button class="btn-qty" (click)="increaseQty()">+</button>
+
+        <button class="btn-qty" (click)="increaseQty()">
+          <i class="fa-regular fa-plus"></i>
+        </button>
       </div>
 
-      
       <button class="btn-add-cart" (click)="addToCart()">
         <span class="btn-label">Agregar al pedido</span>
-        <span class="total-price">$ {{ (product.price * quantity) | number:'1.0-0' }}</span>
+        <span class="total-price">
+          $ {{ (product.price * quantity) | number:'1.0-0' }}
+        </span>
       </button>
 
     </div>
 
   } @else if (!isLoading && error) {
+
     <div class="error-container">
-      <h3>😕 Ups...</h3>
+      <h3><i class="fa-regular fa-face-frown"></i> Ups...</h3>
       <p>No pudimos encontrar el producto.</p>
     </div>
+
   }
 
 </div>
