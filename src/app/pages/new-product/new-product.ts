@@ -1,33 +1,92 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input, OnInit, viewChild } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { MenuService } from '../../services/menu-service';
 
 @Component({
   selector: 'app-new-product',
-  standalone: true,
   imports: [FormsModule],
   templateUrl: './new-product.html',
-  styleUrls: ['./new-product.scss']
+  styleUrls: ['./new-product.css']
 })
-export class NewProductPage {
+export class NewProductPage implements OnInit {
 
-  private route = inject(ActivatedRoute);
-  private menuService = inject(MenuService);
-  private router = inject(Router);
+  menuService = inject(MenuService);
+  router = inject(Router);
+  route = inject(ActivatedRoute);
 
-  restaurantId: string = '';
+  errorEnBack = false;
+  isLoading = false;
 
-  constructor() {
-    this.restaurantId = this.route.snapshot.params['id'];
+  restaurantId = "";
+  productId = input<string>();
+
+  prodForm = viewChild<NgForm>('prodForm');
+
+  isEditMode = false;
+
+  productData = {
+    id: '',
+    name: '',
+    price: null as number | null
+  };
+
+  async ngOnInit() {
+
+    this.restaurantId = this.route.snapshot.params['restaurantId'] 
+      || this.route.snapshot.params['id'];
+
+    if (this.productId()) {
+      this.isEditMode = true;
+      const product = await this.menuService.getProductById(this.productId()!);
+
+      this.productData = {
+        id: product.id,
+        name: product.name,
+        price: product.price
+      };
+
+      this.prodForm()?.setValue({
+        id: this.productData.id,
+        name: this.productData.name,
+        price: this.productData.price
+      });
+    }
   }
 
-  addProduct(form: any) {
+  async saveProduct(form: NgForm) {
     if (form.invalid) return;
 
-    this.menuService.addProductToMenu(this.restaurantId, form.value);
+    this.errorEnBack = false;
+    this.isLoading = true;
 
-    // Volver al menú del restaurante
-    this.router.navigate(['/menu', this.restaurantId]);
+    const dataToSend = {
+      ...form.value,
+      price: form.value.price ?? 0
+    };
+
+    try {
+      let response;
+
+      if (this.isEditMode && this.productId()) {
+        response = await this.menuService.updateProduct(this.productId()!, dataToSend);
+      } else {
+        response = await this.menuService.addProductToMenu(this.restaurantId, dataToSend);
+      }
+
+      this.isLoading = false;
+
+      if (!response) {
+        this.errorEnBack = true;
+        return;
+      }
+
+      this.router.navigate(["/menu", this.restaurantId]);
+
+    } catch (e) {
+      console.error(e);
+      this.isLoading = false;
+      this.errorEnBack = true;
+    }
   }
 }
