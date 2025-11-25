@@ -10,7 +10,6 @@ body {
   height: 100vh;
 }
 
-
 .card {
   background: #ffffff;
   padding: 2.5rem;
@@ -20,7 +19,6 @@ body {
   box-shadow: 0 8px 25px rgba(0,0,0,0.08);
   animation: fadeIn 0.4s ease-in-out;
 }
-
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
@@ -32,23 +30,20 @@ body {
   margin-bottom: 1.5rem;
   font-size: 1.9rem;
   text-align: center;
-  color: #333;
+  color: #4a3828;
   font-weight: 600;
 }
-
 
 form div {
   margin-bottom: 1.4rem;
 }
 
-
 label {
   display: block;
   font-size: 0.9rem;
-  color: #444;
+  color: #4a3828;
   margin-bottom: 0.4rem;
 }
-
 
 input {
   width: 100%;
@@ -60,20 +55,17 @@ input {
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-
 input:focus {
   border-color: #e5954b; 
   box-shadow: 0 0 0 3px rgba(229, 149, 75, 0.25);
   outline: none;
 }
 
-
 .error {
   color: #ca120c;
   font-size: 0.85rem;
   margin-top: 0.3rem;
 }
-
 
 button {
   margin-top: 0.5rem;
@@ -89,18 +81,15 @@ button {
   transition: background 0.25s ease, transform 0.1s ease;
 }
 
-
 button:hover:not(:disabled) {
   background: #cf6f1f;
   transform: translateY(-1px);
 }
 
-
 button:disabled {
   background: #e57c23;
   cursor: not-allowed;
 }
-
 
 p a {
   color: #e57c23;
