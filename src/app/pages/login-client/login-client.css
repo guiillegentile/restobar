@@ -1,140 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap');
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background: #fef6f2; 
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  height: 100vh;
-  padding-top: 100px;
-}
 
 #container.card {
   background: #ffffff;
   padding: 2.5rem;
-  border-radius: 28px;
-  width: 360px;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+
+#container h1 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.9rem;
   text-align: center;
-  margin-top: 100px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #333;
+  font-weight: 600;
 }
 
-#container.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.15);
-}
-
-
-#container.card h1 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  color: #2d2d2d; 
-}
-
-
-form {
-  display: flex;
-  flex-direction: column;
-}
 
 form div {
-  text-align: left;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.4rem;
 }
-
 
 label {
   display: block;
-  font-size: 14px;
-  color: #2d2d2d;
-  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 0.4rem;
 }
 
-
-input[type="email"],
-input[type="password"] {
+input {
   width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #705749;
-  border-radius: 12px;
-  background: #ffffff;
-  font-size: 15px;
-  color: #000000;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 1.5px solid #ddd;
+  background: #fcfcfc;
+  font-size: 1rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 input:focus {
-  border-color: #ff6b1a;
-  box-shadow: 0 0 0 3px rgba(255, 107, 26, 0.25);
+  border-color: #e5954b;
+  box-shadow: 0 0 0 3px rgba(229, 149, 75, 0.25);
   outline: none;
 }
 
 
 .error {
-  color: #d92500;
-  font-size: 13px;
-  margin-top: 0.4rem;
+  color: #c11c16;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
 }
 
 
 button {
+  margin-top: 0.5rem;
   width: 100%;
   padding: 0.9rem;
-  border: none;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #ff6a21, #e04600); /* nuevo gradiente naranja */
-  color: #ffffff;
-  font-size: 16px;
+  background: #e57c23;
+  color: white;
+  font-size: 1.05rem;
   font-weight: 600;
+  border: none;
+  border-radius: 12px;
   cursor: pointer;
-  margin-top: 0.5rem;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  transition: background 0.25s ease, transform 0.1s ease;
 }
 
 button:hover:not(:disabled) {
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(255, 98, 0, 0.35);
+  background: #cf6f1f;
+  transform: translateY(-1px);
 }
 
 button:disabled {
-  background: linear-gradient(90deg, #ff6a21, #ff4d00);
+  background: #e0b995;
   cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
 }
 
-
-p {
-  font-size: 14px;
-  color: #2d2d2d;
-  margin-top: 1.5rem;
-}
-
+/* Link inferior */
 p a {
-  color: #df540e;
+  color: #e57c23;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
+  font-weight: 600;
 }
 
 p a:hover {
-  color: #c43d00;
-}
-
-a[routerLink="/"] {
-  display: block;
-  margin-top: 1rem;
-  font-size: 14px;
-  color: #8a8a8a;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a[routerLink="/"]:hover {
-  color: #c43d00;
+  text-decoration: underline;
 }

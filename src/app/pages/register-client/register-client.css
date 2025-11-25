@@ -1,114 +1,113 @@
 
 body {
+  font-family: "Inter", "Poppins", Arial, sans-serif;
+  background: #faf7f2; 
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
-  background: #fff8f0; 
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
 }
+
 
 .card {
-  width: 400px;
   background: #ffffff;
-  padding: 35px 40px;
-  border-radius: 22px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12); 
-  text-align: center;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeIn 0.4s ease-out forwards;
+  padding: 2.5rem;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  animation: fadeIn 0.4s ease-in-out;
 }
 
+
 @keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .card h1 {
-  margin-bottom: 20px;
-  font-size: 26px;
-  font-weight: 700;
-  color: #020202; 
-}
-
-
-.card form div {
-  text-align: left;
-  margin-bottom: 18px;
-}
-
-.card label {
-  display: block;
-  font-size: 15px;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.9rem;
+  text-align: center;
+  color: #333;
   font-weight: 600;
-  color: #020202;
-  margin-bottom: 5px;
 }
 
-.card input {
+
+form div {
+  margin-bottom: 1.4rem;
+}
+
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 0.4rem;
+}
+
+
+input {
   width: 100%;
-  padding: 12px;
+  padding: 0.75rem;
   border-radius: 10px;
-  border: 1px solid #000000; 
-  font-size: 15px;
-  outline: none;
-  transition: all 0.25s ease;
-  background: #ffffff;
+  border: 1.5px solid #ddd;
+  background: #fcfcfc;
+  font-size: 1rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.card input:focus {
-  border-color: #ff8a00; 
-  background: #fff3e3;
-  box-shadow: 0 0 6px rgba(255, 136, 0, 0.4);
+
+input:focus {
+  border-color: #e5954b; 
+  box-shadow: 0 0 0 3px rgba(229, 149, 75, 0.25);
+  outline: none;
 }
 
 
 .error {
-  font-size: 13px;
-  color: #d9534f;
-  margin-top: 5px;
+  color: #ca120c;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
 }
 
 
-.card button {
+button {
+  margin-top: 0.5rem;
   width: 100%;
-  padding: 13px;
-  margin-top: 10px;
+  padding: 0.9rem;
+  background: #e57c23;
+  color: white;
+  font-size: 1.05rem;
+  font-weight: 600;
   border: none;
   border-radius: 12px;
-  font-size: 16px;
-  font-weight: 700;
   cursor: pointer;
-  color: white;
-  background: linear-gradient(135deg, #ff6a21, #e04600);
-  transition: all 0.25s ease;
+  transition: background 0.25s ease, transform 0.1s ease;
 }
 
-.card button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(255, 136, 0, 0.4);
+
+button:hover:not(:disabled) {
+  background: #cf6f1f;
+  transform: translateY(-1px);
 }
 
-.card button:disabled {
+
+button:disabled {
+  background: #e0b995;
   cursor: not-allowed;
 }
 
-.card p {
-  margin-top: 18px;
-  font-size: 14px;
-}
 
-.card a {
-  color: #c43d00;
-  font-weight: 600;
+p a {
+  color: #e57c23;
   text-decoration: none;
+  font-weight: 600;
 }
 
-.card a:hover {
+p a:hover {
   text-decoration: underline;
 }
