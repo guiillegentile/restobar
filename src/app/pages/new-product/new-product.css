@@ -80,7 +80,6 @@ button:hover:not(:disabled) {
 
 button:disabled {
   background: #e57c23;
-  opacity: 0.6;
   cursor: not-allowed;
 }
 
