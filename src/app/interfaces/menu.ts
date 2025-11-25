@@ -5,6 +5,7 @@ export interface MenuItem {
     isFavorite?: boolean;
     isHappyHour?: boolean;
     discount ?: number;
+    imageUrl ?: string;
   }
   
   export interface RestaurantMenu {

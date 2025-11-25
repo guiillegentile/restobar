@@ -16,7 +16,7 @@ export class MenuService {
     {
       restaurantId: '1',
       items: [
-        { id: '1', name: 'Pizza Muzza', price: 12000 },
+        { id: '1', name: 'Pizza Muzza', price: 12000, imageUrl: 'img/DgT5l_dXUAA8yic.jpg'},
         { id: '2', name: 'Pizza Napolitana', price: 12500, isFavorite: true },
         { id: '3', name: 'Pizza 4 Quesos', price: 11000 },
         { id: '4', name: 'Pizza Rucula', price: 13000, isHappyHour: true},
