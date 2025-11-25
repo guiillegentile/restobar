@@ -15,7 +15,6 @@ import{ Router } from '@angular/router';
 
 })
 export class ProductDetail {
-  router = inject(Router);
 private route = inject(ActivatedRoute);
   private menuService = inject(MenuService);
   private cdr = inject(ChangeDetectorRef)
@@ -66,8 +65,9 @@ quantity: number = 1;
 
   addToCart() {
     if (!this.product) return;
-    this.router.navigate(['menu/']);
+
     this.cartService.addToCart(this.product, this.quantity);
+
     alert(`Agregado: ${this.quantity} x ${this.product.name}`);
     
   }
