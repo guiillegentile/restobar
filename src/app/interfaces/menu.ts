@@ -7,6 +7,7 @@ export interface MenuItem {
     discount ?: number;
     imageUrl ?: string;
     categoryId: number;
+    description ?: string;
   }
   
   export interface RestaurantMenu {
