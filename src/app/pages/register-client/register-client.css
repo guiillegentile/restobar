@@ -97,7 +97,7 @@ button:hover:not(:disabled) {
 
 
 button:disabled {
-  background: #e0b995;
+  background: #e57c23;
   cursor: not-allowed;
 }
 
