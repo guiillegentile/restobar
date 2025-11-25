@@ -266,11 +266,11 @@
 
 .btn-danger-outline {
   background: #fff;
-  border: 2px solid #cc260c;
-  color: #cc260c;
+  border: 2px solid #d93025;
+  color: #d93025;
 }
 .btn-danger-outline:hover {
-  background: #cc260c;
+  background: #d93025;
   color: #fff;
 }
 
