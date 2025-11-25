@@ -27,12 +27,12 @@ export class MenuService {
     {
       restaurantId: '2',
       items: [
-        { id: '7', name: 'Sushi Roll Salmón', price: 15200 },
-        { id: '8', name: 'Nigiri Langostino', price: 14800, isFavorite: true },
-        { id: '9', name: 'Philadelphia', price: 13500 },
-        { id: '10', name: 'Salmon Grill', price: 14000 },
+        { id: '7', name: 'New york roll', price: 15200 },
+        { id: '8', name: 'Nigiris', price: 14800, isFavorite: true },
+        { id: '9', name: 'Philadelphia roll', price: 13500 },
+        { id: '10', name: 'Hot roll', price: 14000 },
         { id: '11', name: 'Sushi Vegetariano', price: 13500 },
-        { id: '12', name: 'Sushi Rebozados', price: 14500 }
+        { id: '12', name: 'Temakis', price: 14500 }
       ]
     },
     {
