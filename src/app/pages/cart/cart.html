@@ -26,7 +26,6 @@
             <!-- Subtotal del item -->
             <span class="item-subtotal">$ {{ item.subtotal | number:'1.0-0' }}</span>
             
-            <!-- Botón Eliminar -->
             <button class="btn-remove" (click)="removeItem(item)">
               <i class="fa-solid fa-trash"></i>
             </button>
@@ -59,7 +58,6 @@
 
   } @else {
     
-    <!-- ESTADO VACÍO -->
     <div class="empty-state">
       <div class="icon">
         <i class="fa-solid fa-cart-shopping"></i>

@@ -177,7 +177,6 @@
     padding: 1rem;
   }
 }
-/* ---------- BOTONES FLOTANTES INFERIORES ---------- */
 
 .fab-container {
   display: flex;
@@ -205,7 +204,7 @@
 
 .btn-cart-fab:hover,
 .btn-restaurant:hover {
-  background: #ff7a00;
+  background: #e57c23;
   color: white;
   transform: translateY(-3px);
 }

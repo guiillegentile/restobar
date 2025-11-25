@@ -1,7 +1,7 @@
 export interface MenuItem {
     id: string;
     name: string;
-    price: number;
+    price: number
     isFavorite?: boolean;
     isHappyHour?: boolean;
     discount ?: number;

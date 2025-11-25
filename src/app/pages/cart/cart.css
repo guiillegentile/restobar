@@ -93,7 +93,7 @@ color: #333;
 .btn-remove {
 background: none;
 border: none;
-color: #ff4d4d;
+color: #a09d9d;
 font-size: 1.1rem;
 cursor: pointer;
 transition: 0.2s;
@@ -129,7 +129,7 @@ font-size: 1.1rem;
 margin-top: 8px;
 width: 100%;
 padding: 10px 0;
-background-color: #ff6b01;
+background-color: #e57c23;
 color: #fff;
 font-size: 1rem;
 font-weight: 600;
@@ -140,7 +140,7 @@ transition: 0.2s;
 }
 
 .btn-checkout:hover {
-background-color: #e65c00;
+background-color: #e57c23;
 }
 
 .empty-state {
