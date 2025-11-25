@@ -1,0 +1,90 @@
+#container.card {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.4s ease-in-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#container h2 {
+  margin-top: 0;
+  margin-bottom: 1.8rem;
+  font-size: 1.7rem;
+  text-align: center;
+  color: #4a3828;
+  font-weight: 600;
+}
+
+form div {
+  margin-bottom: 1.3rem;
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  color: #4a3828;
+  margin-bottom: 0.35rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 1.5px solid #ddd;
+  background: #fcfcfc;
+  font-size: 1rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+input:focus {
+  border-color: #e5954b;
+  box-shadow: 0 0 0 3px rgba(229, 149, 75, 0.25);
+  outline: none;
+}
+
+input[disabled] {
+  background: #f2f2f2;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #c11c16;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+button {
+  margin-top: 0.5rem;
+  width: 100%;
+  padding: 0.9rem;
+  background: #e57c23;
+  color: white;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.1s ease;
+}
+
+button:hover:not(:disabled) {
+  background: #cf6f1f;
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  background: #e57c23;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -48%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
