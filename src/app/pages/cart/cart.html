@@ -1,12 +1,9 @@
 <div class="cart-container">
-  
   <div class="header">
     <h2>Tu Pedido</h2>
   </div>
 
   @if (cartItems.length > 0) {
-    
-    <!-- LISTA DE ITEMS -->
     <div class="items-list">
       @for (item of cartItems; track item.product.id) {
         <div class="cart-item">
