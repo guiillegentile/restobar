@@ -17,8 +17,8 @@ export class MenuService {
       restaurantId: '1',
       items: [
         { id: '1', name: 'Pizza Muzza', price: 12.000, categoryId: 123, imageUrl: 'assets/DgT5l_dXUAA8yic.jpg' },
-        { id: '2', name: 'Pizza Napolitana', price: 12.500, isFavorite: true, categoryId: 123,imageUrl:'assets/8metlvp345_portada-pizza.jpg' },
-        { id: '3', name: 'Pizza 4 Quesos', price: 11.000, categoryId: 123 },
+        { id: '2', name: 'Pizza Napolitana', price: 12.500, isFavorite: true, categoryId: 123, imageUrl:'assets/8metlvp345_portada-pizza.jpg' },
+        { id: '3', name: 'Pizza 4 Quesos', price: 11.000, categoryId: 123},
         { id: '4', name: 'Pizza Rucula', price: 13.000, isHappyHour: true, categoryId: 124},
         { id: '5', name: 'Pizza Margarita', price: 13500, discount: 10, categoryId: 125 },
         { id: '6', name: 'Pizza Carbonara', price: 14000, categoryId: 124 }
