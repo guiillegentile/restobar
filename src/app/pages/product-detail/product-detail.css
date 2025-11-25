@@ -39,7 +39,7 @@
 .product-title {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #222;
+  color: #4a3828;
   margin: 0;
 }
 
@@ -69,13 +69,13 @@
 .product-body h3 {
   margin: 0;
   font-size: 1.1rem;
-  color: #333;
+  color: #4a3828;
 }
 
 .description {
   margin: 0;
   font-size: 0.95rem;
-  color: #666;
+  color: #796d62;
   line-height: 1.4;
 }
 
@@ -124,7 +124,6 @@
   font-size: 1.1rem;
   font-weight: 600;
 }
-
 
 .btn-add-cart {
   width: 100%;

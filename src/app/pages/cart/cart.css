@@ -18,7 +18,7 @@ border-bottom: 1px solid #e0e0e0;
 .cart-container .header h2 {
 margin: 0;
 font-size: 1.4rem;
-color: #333;
+color: #4a3828;
 }
 
 .items-list {
@@ -42,13 +42,13 @@ flex: 1;
 margin: 0 0 4px 0;
 font-weight: 600;
 font-size: 1rem;
-color: #222;
+color: #4a3828;
 }
 
 .item-info .item-price {
 margin: 0;
 font-size: 0.9rem;
-color: #666;
+color: #7a6d61;
 }
 
 .item-actions {
@@ -87,13 +87,13 @@ text-align: center;
 .item-subtotal {
 font-weight: 600;
 font-size: 0.95rem;
-color: #333;
+color: #4a3828;
 }
 
 .btn-remove {
 background: none;
 border: none;
-color: #a09d9d;
+color: #7a6d61;
 font-size: 1.1rem;
 cursor: pointer;
 transition: 0.2s;
@@ -146,19 +146,19 @@ background-color: #e57c23;
 .empty-state {
 text-align: center;
 padding: 40px 16px;
-color: #666;
+color: #7a6d61;
 }
 
 .empty-state .icon {
 font-size: 3rem;
-color: #ccc;
+color: #91877d;
 margin-bottom: 16px;
 }
 
 .empty-state h3 {
 margin: 0 0 8px 0;
 font-size: 1.2rem;
-color: #333;
+color: #4a3828;
 }
 
 .empty-state p {

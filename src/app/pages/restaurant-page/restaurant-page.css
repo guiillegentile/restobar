@@ -6,14 +6,12 @@
   animation: fadeIn 0.4s ease-in-out;
 }
 
-
 .container h2 {
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #333;
+  color: #4a3828;
   font-weight: 700;
 }
-
 
 .restaurant-item {
   background: #ffffff;
@@ -27,26 +25,23 @@
   transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
-
 .restaurant-item:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0,0,0,0.10);
 }
 
-
 .restaurant-item .info h3 {
   margin: 0;
   font-size: 1.3rem;
-  color: #222;
+  color: #4a3828;
   font-weight: 600;
 }
 
 .restaurant-item .info p {
   margin: 0.3rem 0 0 0;
-  color: #666;
+  color: #877566;
   font-size: 0.95rem;
 }
-
 
 .btn {
   padding: 0.7rem 1.2rem;
