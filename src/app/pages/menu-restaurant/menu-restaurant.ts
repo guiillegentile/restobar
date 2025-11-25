@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MenuService } from '../../services/menu-service';
 import { RestaurantService } from '../../services/restaurant-service';
 
@@ -70,7 +70,6 @@ export class MenuRestaurantPage {
   goToCart() {
     this.router.navigate(['/cart']);
   }
-
 
   goToRest() {
     this.router.navigate(['/restaurant-page']);

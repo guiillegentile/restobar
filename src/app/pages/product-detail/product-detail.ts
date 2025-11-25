@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MenuService } from '../../services/menu-service';
 import {  CartService } from '../../services/cart-service';
 import { CommonModule } from '@angular/common';
@@ -10,8 +10,10 @@ import { CommonModule } from '@angular/common';
   templateUrl: './product-detail.html',
   styleUrl: './product-detail.css',
 })
+
 export class ProductDetail {
 private route = inject(ActivatedRoute);
+private router = inject(Router);
   private menuService = inject(MenuService);
   private cdr = inject(ChangeDetectorRef)
   private cartService = inject(CartService);
@@ -67,6 +69,7 @@ quantity: number = 1;
     
     alert(`Agregado: ${this.quantity} x ${this.product.name}`);
     
+   this.router.navigate(['/cart']);
   }
 
 }
