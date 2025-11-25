@@ -160,12 +160,12 @@
 }
 
 .btn-delete {
-  background: #d93025;
+  background: #a13226;
   color: #fff;
 }
 
 .btn-delete:hover {
-  background: #bb241c;
+  background: #a13226;
 }
 
 @media (max-width: 480px) {
@@ -267,11 +267,11 @@
 
 .btn-danger-outline {
   background: #fff;
-  border: 2px solid #d93025;
-  color: #d93025;
+  border: 2px solid #a13226;
+  color: #a13226;
 }
 .btn-danger-outline:hover {
-  background: #d93025;
+  background: #a13226;
   color: #fff;
 }
 
