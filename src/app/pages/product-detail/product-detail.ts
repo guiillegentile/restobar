@@ -1,17 +1,21 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MenuService } from '../../services/menu-service';
 import { CartService } from '../../services/cart-service';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'
+import{ Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-product-detail',
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './product-detail.html',
   styleUrl: './product-detail.css',
+
 })
 export class ProductDetail {
+  router = inject(Router);
 private route = inject(ActivatedRoute);
   private menuService = inject(MenuService);
   private cdr = inject(ChangeDetectorRef)
@@ -62,10 +66,8 @@ quantity: number = 1;
 
   addToCart() {
     if (!this.product) return;
-
+    this.router.navigate(['menu/:id']);
     this.cartService.addToCart(this.product, this.quantity);
-    
-    
     alert(`Agregado: ${this.quantity} x ${this.product.name}`);
     
   }
