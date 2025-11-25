@@ -42,16 +42,13 @@
 
       <button class="btn-add-cart" (click)="addToCart()",>
         <span class="btn-label">Agregar al pedido</span>
-        <span class="total-price">
-
-          $ {{ (product.price * quantity) | number:'1.0-0' }}
+        <span class="total-price"> $ {{ (product.price * quantity) | number:'1.0-0' }}
         </span>
       </button>
 
     </div>
 
   } @else if (!isLoading && error) {
-
     <div class="error-container">
       <h3><i class="fa-regular fa-face-frown"></i> Ups...</h3>
       <p>No pudimos encontrar el producto.</p>
