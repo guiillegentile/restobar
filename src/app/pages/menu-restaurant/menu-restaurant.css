@@ -1,0 +1,213 @@
+.page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.8rem;
+  color: #333;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.2rem;
+}
+
+.menu-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.2rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  transition: transform 0.18s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+}
+
+
+.menu-card.highlight-fav {
+  border: 2px solid #e57c23;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-name {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.btn-favorite {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #bbb;
+  transition: color 0.25s ease;
+}
+
+.btn-favorite.active {
+  color: #e57c23;
+}
+
+.btn-favorite:hover {
+  color: #e57c23;
+}
+
+.badges-container {
+  margin: 0.6rem 0;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.badge-happy {
+  background: rgba(229, 124, 35, 0.12);
+  color: #e57c23;
+  padding: 0.25rem 0.55rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+
+.badge-discount {
+  background: rgba(229, 0, 0, 0.12);
+  color: #d93025;
+  padding: 0.25rem 0.55rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.price-row {
+  margin: 0.5rem 0 1rem 0;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #777;
+  margin-right: 0.35rem;
+}
+
+.new-price {
+  color: #e57c23;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.regular-price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.link-detail {
+  display: inline-block;
+  margin-top: auto;
+  align-self: flex-end;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.45rem 0.75rem;
+  border-radius: 12px;
+  border: 2px solid #e57c23;
+  color: #e57c23;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.link-detail:hover {
+  background: #e57c23;
+  color: #fff;
+}
+
+.owner-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.btn-action {
+  padding: 0.45rem 0.7rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border: none;
+  transition: background 0.25s ease;
+}
+
+.btn-edit {
+  background: #e57c23;
+  color: #fff;
+}
+
+.btn-edit:hover {
+  background: #cf6f1f;
+}
+
+.btn-delete {
+  background: #d93025;
+  color: #fff;
+}
+
+.btn-delete:hover {
+  background: #bb241c;
+}
+
+@media (max-width: 480px) {
+  .product-name {
+    font-size: 1.1rem;
+  }
+
+  .menu-card {
+    padding: 1rem;
+  }
+}
+/* ---------- BOTONES FLOTANTES INFERIORES ---------- */
+
+.fab-container {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  padding-left: 10px;
+}
+
+/* BOTÓN GENERAL */
+.btn-cart-fab,
+.btn-restaurant {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.25s ease;
+  font-size: 20px;
+  color: #444;
+}
+
+.btn-cart-fab:hover,
+.btn-restaurant:hover {
+  background: #ff7a00;
+  color: white;
+  transform: translateY(-3px);
+}
+

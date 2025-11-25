@@ -17,17 +17,21 @@
                 [class.active]="item.isFavorite" 
                 (click)="toggleFavorite($event, item.id)" 
                 title="Agregar a favoritos">
-                {{ item.isFavorite ? '❤️' : '🤍' }}
+                <i class="{{ item.isFavorite ? 'fa-solid fa-heart' : 'fa-regular fa-heart' }}"></i>
               </button>
             </div>
 
             <div class="badges-container">
               @if(item.isHappyHour) {
-                <span class="badge badge-happy">🍻 Happy Hour</span>
+                <span class="badge badge-happy">
+                  <i class="fa-regular fa-clock"></i> Happy Hour
+                </span>
               }
               
               @if(item.discount && item.discount > 0) {
-                <span class="badge badge-discount">🏷️ {{ item.discount }}% OFF</span>
+                <span class="badge badge-discount">
+                  <i class="fa-regular fa-tag"></i> {{ item.discount }}% OFF
+                </span>
               }
             </div>
             
@@ -40,16 +44,18 @@
               }
             </div>
 
-            <span class="link-detail" (click)="viewDetail(item.id)">Ver detalle →</span>
+            <span class="link-detail" (click)="viewDetail(item.id)">
+              Ver detalle <i class="fa-solid fa-arrow-right"></i>
+            </span>
           </div>
 
           @if(isOwner){
             <div class="owner-actions">
               <button class="btn-action btn-edit" (click)="editProduct(item.id)">
-                ✏️ Editar
+                <i class="fa-regular fa-pen-to-square"></i> Editar
               </button>
               <button class="btn-action btn-delete" (click)="deleteProduct(item.id)">
-                🗑️ Eliminar
+                <i class="fa-regular fa-trash-can"></i> Eliminar
               </button>
             </div>
           }
@@ -66,27 +72,33 @@
   @if(isOwner){
     <hr class="divider">
     <div class="admin-panel">
-      <h3>🛠️ Panel de Administración</h3>
+      <h3><i class="fa-regular fa-screwdriver-wrench"></i> Panel de Administración</h3>
       
       <div class="admin-grid">
         <button class="btn-admin btn-primary" (click)="goToNewProduct()">
-          + Nuevo Producto
+          <i class="fa-regular fa-square-plus"></i> Nuevo Producto
         </button>
 
         <button class="btn-admin btn-secondary" (click)="goToCategories()">
-          📂 Categorías
+          <i class="fa-regular fa-folder-open"></i> Categorías
         </button>
 
         <button class="btn-admin btn-danger-outline" (click)="goToProfile()">
-          ⚙️ Mi Cuenta
+          <i class="fa-regular fa-gear"></i> Mi Cuenta
         </button>
       </div>
     </div>
   } @else {
+    <div class="fab-container">
     <button class="btn-cart-fab" (click)="goToCart()">
-      🛒
+      <i class="fa-regular fa-cart-shopping"></i>
     </button>
-  }
+
+    <button class="btn-restaurant" (click)="goToRest()">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+  </div>
+}
 
   <ng-template #noMenu>
     <p>No hay menú disponible.</p>

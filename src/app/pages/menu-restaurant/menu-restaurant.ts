@@ -70,6 +70,11 @@ export class MenuRestaurantPage {
   goToCart() {
     this.router.navigate(['/cart']);
   }
+
+
+  goToRest() {
+    this.router.navigate(['/restaurant-page']);
+  }
 }
 
 
