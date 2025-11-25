@@ -74,7 +74,7 @@ button {
   margin-top: 10px;
   font-size: 16px;
   font-weight: 600;
-  background: #e67e22;
+  background: #d68136;
   color: white;
   border: none;
   border-radius: 10px;
@@ -87,7 +87,6 @@ button:hover:not(:disabled) {
 }
 
 button:disabled {
-  opacity: 0.6;
   cursor: not-allowed;
 }
 
