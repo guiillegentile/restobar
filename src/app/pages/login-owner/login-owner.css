@@ -74,11 +74,11 @@ button {
 
 
 button:hover:not(:disabled) {
-  background: #cf6f1f;
+  background: #e57c23;
   transform: translateY(-1px);
 }
 
 button:disabled {
-  background: #e0b995;
+  background: #e57c23;
   cursor: not-allowed;
 }
