@@ -2,7 +2,7 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1.8rem;
-  color: #333;
+  color: #4a3828;
 }
 
 .menu-grid {
@@ -42,7 +42,7 @@
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #222;
+  color: #4a3828;
 }
 
 .btn-favorite {
@@ -113,7 +113,7 @@
 .regular-price {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #222;
+  color: #4a3828;
 }
 
 .link-detail {
@@ -224,6 +224,7 @@
   margin-bottom: 25px;
   font-size: 1.4rem;
   font-weight: 600;
+  color: #4a3828;
 }
 
 .admin-grid {
@@ -274,5 +275,4 @@
   color: #fff;
 }
 
-* {
-}
+
