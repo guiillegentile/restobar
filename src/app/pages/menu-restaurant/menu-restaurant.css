@@ -177,3 +177,37 @@
     padding: 1rem;
   }
 }
+/* ---------- BOTONES FLOTANTES INFERIORES ---------- */
+
+.fab-container {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  padding-left: 10px;
+}
+
+/* BOTÓN GENERAL */
+.btn-cart-fab,
+.btn-restaurant {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.25s ease;
+  font-size: 20px;
+  color: #444;
+}
+
+.btn-cart-fab:hover,
+.btn-restaurant:hover {
+  background: #ff7a00;
+  color: white;
+  transform: translateY(-3px);
+}
+
