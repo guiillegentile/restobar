@@ -5,9 +5,7 @@
     <div class="product-card">
       
       <div class="product-header">
-        <div class="img-placeholder">
-          <i class="fa-regular fa-utensils"></i>
-        </div>
+      <img [src]="product.imageUrl" alt="">
         
         <h1 class="product-title">{{ product.name }}</h1>
         <span class="price-badge">$ {{ product.price | number:'1.0-0' }}</span>
