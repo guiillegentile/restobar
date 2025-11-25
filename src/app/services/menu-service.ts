@@ -16,109 +16,134 @@ export class MenuService {
     {
       restaurantId: '1',
       items: [
-        { id: '1', name: 'Pizza Muzza', price: 12000, imageUrl: 'img/DgT5l_dXUAA8yic.jpg'},
-        { id: '2', name: 'Pizza Napolitana', price: 12500, isFavorite: true },
-        { id: '3', name: 'Pizza 4 Quesos', price: 11000 },
-        { id: '4', name: 'Pizza Rucula', price: 13000, isHappyHour: true},
-        { id: '5', name: 'Pizza Margarita', price: 13500, discount: 10 },
-        { id: '6', name: 'Pizza Carbonara', price: 14000 }
+        { id: '1', name: 'Pizza Muzza', price: 12.000, categoryId: 123, imageUrl: 'img/DgT5l_dXUAA8yic.jpg' },
+        { id: '2', name: 'Pizza Napolitana', price: 12.500, isFavorite: true, categoryId: 123 },
+        { id: '3', name: 'Pizza 4 Quesos', price: 11.000, categoryId: 123 },
+        { id: '4', name: 'Pizza Rucula', price: 13.000, isHappyHour: true, categoryId: 124},
+        { id: '5', name: 'Pizza Margarita', price: 13500, discount: 10, categoryId: 125 },
+        { id: '6', name: 'Pizza Carbonara', price: 14000, categoryId: 124 }
       ]
     },
     {
       restaurantId: '2',
       items: [
-        { id: '7', name: 'New york roll', price: 15200 },
-        { id: '8', name: 'Nigiris', price: 14800, isFavorite: true },
-        { id: '9', name: 'Philadelphia roll', price: 13500 },
-        { id: '10', name: 'Hot roll', price: 14000 },
-        { id: '11', name: 'Sushi Vegetariano', price: 13500 },
-        { id: '12', name: 'Temakis', price: 14500 }
+        { id: '7', name: 'Sushi Roll Salmón', price: 15200, categoryId: 123  },
+        { id: '8', name: 'Nigiri Langostino', price: 14800, isFavorite: true, categoryId: 123  },
+        { id: '9', name: 'Philadelphia', price: 13500, categoryId: 124  },
+        { id: '10', name: 'Salmon Grill', price: 14000, categoryId: 124  },
+        { id: '11', name: 'Sushi Vegetariano', price: 13500, categoryId: 125  },
+        { id: '12', name: 'Sushi Rebozados', price: 14500, categoryId: 125  }
       ]
     },
     {
       restaurantId: '3',
       items: [
-        { id: '13', name: 'Vacío con guarnición', price: 11000 },
-        { id: '14', name: 'Provoleta', price: 7500 },
-        { id: '15', name: '½ Bife de chorizo', price: 13500 },
-        { id: '16', name: 'Entrecot al champignon con guarnición', price: 20000 },
-        { id: '17', name: 'Lomo grillado con papas noisette', price: 21000 },
-        { id: '18', name: '½ Cucharrasco', price: 12000 }
+        { id: '13', name: 'Vacío con guarnición', price: 11000, categoryId: 125  },
+        { id: '14', name: 'Provoleta', price: 7500, categoryId: 124  },
+        { id: '15', name: '½ Bife de chorizo', price: 13500, categoryId: 123  },
+        { id: '16', name: 'Entrecot al champignon con guarnición', price: 20000, categoryId: 125  },
+        { id: '17', name: 'Lomo grillado con papas noisette', price: 21000, categoryId: 123  },
+        { id: '18', name: '½ Cucharrasco', price: 12000, categoryId: 123  }
       ]
     },
     {
       restaurantId: '4',
       items: [
-        { id: '19', name: 'Capuccino', price: 7000 },
-        { id: '20', name: 'Cortado', price: 5000 },
-        { id: '21', name: 'Desayuno Campo: Dos tostadas con mermelada y queso , y una infusión', price: 13500 },
-        { id: '22', name: 'Avocado Toast', price: 12000 },
-        { id: '23', name: 'Submarino', price: 3500},
-        { id: '24', name: 'Medialunas', price: 1000 }
+        { id: '19', name: 'Capuccino', price: 7000, categoryId: 123 },
+        { id: '20', name: 'Cortado', price: 5000, categoryId: 123 },
+        { id: '21', name: 'Desayuno Campo: Dos tostadas con mermelada y queso , y una infusión', price: 13500, categoryId: 123 },
+        { id: '22', name: 'Avocado Toast', price: 12000, categoryId: 125 },
+        { id: '23', name: 'Submarino', price: 3500, categoryId: 126},
+        { id: '24', name: 'Medialunas', price: 1000, categoryId: 126 }
       ]
     },
     {
       restaurantId: '5',
       items: [
-        { id: '25', name: 'Ravioles de verdura', price: 18000 },
-        { id: '26', name: 'Pasta Negra', price: 17500 },
-        { id: '27', name: 'Sorrentinos de Jamón y Queso', price: 13500 },
-        { id: '28', name: 'Fideos con mariscos', price: 20000 },
-        { id: '29', name: 'Canelones de verdura', price: 19000 },
-        { id: '30', name: 'Ñoquis de salmon', price: 17000 }
+        { id: '25', name: 'Ravioles de verdura', price: 18000, categoryId: 125 },
+        { id: '26', name: 'Pasta Negra', price: 17500, categoryId: 125 },
+        { id: '27', name: 'Sorrentinos de Jamón y Queso', price: 13500, categoryId: 123 },
+        { id: '28', name: 'Fideos con mariscos', price: 20000, categoryId: 123 },
+        { id: '29', name: 'Canelones de verdura', price: 19000, categoryId: 123 },
+        { id: '30', name: 'Ñoquis de salmon', price: 17000, categoryId: 126 }
       ]
     },
     {
       restaurantId: '6',
       items: [
-        { id: '31', name: 'Fric Burger', price: 11000 },
-        { id: '32', name: 'MacBurger', price: 7500 },
-        { id: '33', name: 'Vegguie Burger', price: 13500 },
-        { id: '34', name: 'Super Triple', price: 20000 },
-        { id: '35', name: 'Burger Asada', price: 21000 },
-        { id: '36', name: 'CheBurger', price: 12000 }
+        { id: '31', name: 'Fric Burger', price: 11000, categoryId: 124 },
+        { id: '32', name: 'MacBurger', price: 7500, categoryId: 124 },
+        { id: '33', name: 'Vegguie Burger', price: 13500, categoryId: 126 },
+        { id: '34', name: 'Super Triple', price: 20000, categoryId: 123 },
+        { id: '35', name: 'Burger Asada', price: 21000, categoryId: 126 },
+        { id: '36', name: 'CheBurger', price: 12000, categoryId: 124 }
       ]
     }
   ];
-  addProductToMenu(restaurantId: string, product: MenuItem) {
-    const menu = this.getMenuByRestaurant(restaurantId);
+addProductToMenu(restaurantId: string, productData: any): Promise<boolean> {
+    return new Promise((resolve) => {
+      
+      const menu = this.menus.find(m => m.restaurantId === restaurantId);
 
-    if (menu) {
-      menu.items.push(product);
-    }
+      if (menu) {
+
+        let maxId = 0;
+        this.menus.forEach(m => {
+          m.items.forEach(item => {
+            const currentId = parseInt(item.id, 10);
+            if (!isNaN(currentId) && currentId > maxId) {
+              maxId = currentId;
+            }
+          });
+        });
+
+        
+        const newId = (maxId + 1).toString();
+
+        
+        const newProduct = {
+          id: newId,
+          name: productData.name,
+          price: productData.price,
+          categoryId: productData.categoryId
+        };
+
+        
+        menu.items.push(newProduct);
+        
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    });
   }
   
   getMenuByRestaurant(id: string) {
     return this.menus.find(m => m.restaurantId === id);
   }
 
-getProductById(productId: string) {
-    const allItems = this.menus.flatMap(menu => menu.items);
-    const foundProduct = allItems.find(item => item.id === productId);
-
-    if (foundProduct) {
-      return Promise.resolve({ ...foundProduct });
-    } else {
-      return Promise.reject('Producto no encontrado');
-    }
-  }
-
-updateProduct(productId: string, updatedData: any) {
-
+async getProductById(id: string) {
     for (const menu of this.menus) {
-      const index = menu.items.findIndex(item => item.id === productId);
-      
-      if (index !== -1) {
-
-        menu.items[index] = { 
-          ...menu.items[index], 
-          ...updatedData,       
-          id: productId         
-        };
-        return Promise.resolve(true);
+      const foundItem = menu.items.find(item => item.id === id);
+      if (foundItem) {
+        return { ...foundItem, restaurantId: menu.restaurantId };
       }
     }
-    return Promise.reject('No se pudo actualizar, producto no existe');
+    throw new Error('Producto no encontrado');
+  }
+
+updateProduct(id: string, data: any): Promise<boolean> {
+    return new Promise((resolve) => {
+      for (const menu of this.menus) {
+        const index = menu.items.findIndex(i => i.id === id);
+        if (index !== -1) {
+          menu.items[index] = { ...menu.items[index], ...data };
+          resolve(true);
+          return;
+        }
+      }
+      resolve(false);
+    });
   }
 
   deleteProduct(productId: string) {

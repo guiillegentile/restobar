@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, viewChild } from '@angular/core';
+import { Component, inject, input, OnInit, ViewChild, viewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuService } from '../../services/menu-service';
@@ -11,7 +11,7 @@ import { MenuService } from '../../services/menu-service';
 })
 export class NewProductPage implements OnInit {
 
-  menuService = inject(MenuService);
+menuService = inject(MenuService);
   router = inject(Router);
   route = inject(ActivatedRoute);
 
@@ -19,7 +19,7 @@ export class NewProductPage implements OnInit {
   isLoading = false;
 
   restaurantId = "";
-  productId = input<string>();
+  currentProductId: string | null = null; 
 
   prodForm = viewChild<NgForm>('prodForm');
 
@@ -31,46 +31,66 @@ export class NewProductPage implements OnInit {
     price: null as number | null
   };
 
-  async ngOnInit() {
+async ngOnInit() {
+    
+    this.isEditMode = this.router.url.includes('edit');
 
-    this.restaurantId = this.route.snapshot.params['restaurantId'] 
-      || this.route.snapshot.params['id'];
+    if (this.isEditMode) {
+      
+      this.currentProductId = this.route.snapshot.paramMap.get('id');
 
-    if (this.productId()) {
-      this.isEditMode = true;
-      const product = await this.menuService.getProductById(this.productId()!);
+      if (this.currentProductId) {
+        try {
+          const product: any = await this.menuService.getProductById(this.currentProductId);
+          
+          
+          this.restaurantId = product.restaurantId;
 
+          
+          this.productData = {
+            id: product.id,
+            name: product.name,
+            price: product.price
+          };
+        } catch (error) {
+          this.errorEnBack = true;
+        }
+      }
+
+    } else {
+      
+      this.restaurantId = this.route.snapshot.paramMap.get('restaurantId') 
+                       || this.route.snapshot.paramMap.get('id') 
+                       || "";
+
+      
       this.productData = {
-        id: product.id,
-        name: product.name,
-        price: product.price
+        id: '',
+        name: '',
+        price: null
       };
-
-      this.prodForm()?.setValue({
-        id: this.productData.id,
-        name: this.productData.name,
-        price: this.productData.price
-      });
     }
   }
 
-  async saveProduct(form: NgForm) {
+async saveProduct(form: NgForm) {
     if (form.invalid) return;
 
     this.errorEnBack = false;
     this.isLoading = true;
 
     const dataToSend = {
-      ...form.value,
+      name: form.value.name,
       price: form.value.price ?? 0
     };
 
     try {
       let response;
 
-      if (this.isEditMode && this.productId()) {
-        response = await this.menuService.updateProduct(this.productId()!, dataToSend);
+      if (this.isEditMode && this.currentProductId) {
+        
+        response = await this.menuService.updateProduct(this.currentProductId, dataToSend);
       } else {
+        
         response = await this.menuService.addProductToMenu(this.restaurantId, dataToSend);
       }
 
@@ -84,7 +104,6 @@ export class NewProductPage implements OnInit {
       this.router.navigate(["/menu", this.restaurantId]);
 
     } catch (e) {
-      console.error(e);
       this.isLoading = false;
       this.errorEnBack = true;
     }

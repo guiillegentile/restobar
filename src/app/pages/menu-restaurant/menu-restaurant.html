@@ -1,15 +1,26 @@
 <div class="container">
   <h2 class="page-title">Menú del restaurante</h2>
 
-  @if(menu && menu.items.length > 0) {
+@if(!isOwner) {
+    <div class="filter-container">
+      <select class="category-select" [(ngModel)]="selectedCategory">
+        <option value="">Todas las categorías</option>
+        @for(cat of categoryList; track cat.id) {
+          <option [value]="cat.id">{{ cat.name }}</option>
+        }
+      </select>
+    </div>
+  }
+
+@if(menu && filteredItems.length > 0) {
     <div class="menu-grid">
-      @for(item of menu.items; track item.id){
+      
+      @for(item of filteredItems; track item.id){
         
         <div class="menu-card" [class.highlight-fav]="item.isFavorite">
                  
           
           <div class="card-content">
-            
             <div class="card-header">
               <h3 class="product-name">{{ item.name }}</h3>
               
@@ -66,7 +77,11 @@
     </div>
   } @else {
     <div class="empty-state">
-      <p>No hay productos en el menú todavía.</p>
+      @if(selectedCategory !== "") {
+        <p>No hay productos en esta categoría.</p>
+      } @else {
+        <p>No hay productos en el menú todavía.</p>
+      }
     </div>
   }
 

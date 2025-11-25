@@ -6,10 +6,10 @@ export interface MenuItem {
     isHappyHour?: boolean;
     discount ?: number;
     imageUrl ?: string;
+    categoryId: number;
   }
   
   export interface RestaurantMenu {
     restaurantId: string;
     items: MenuItem[];
   }
-  
