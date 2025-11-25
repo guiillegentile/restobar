@@ -1,20 +1,14 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background: #f8f6f4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 #container.card {
   background: #ffffff;
   padding: 2.5rem;
   border-radius: 18px;
   width: 100%;
   max-width: 420px;
+  margin: 2rem auto;
   box-shadow: 0 8px 25px rgba(0,0,0,0.08);
   animation: fadeIn 0.4s ease-in-out;
+  margin-left: 30%;
+  margin-top: 8%;
 }
 
 #container h1 {
@@ -22,7 +16,7 @@ html, body {
   margin-bottom: 1.5rem;
   font-size: 1.9rem;
   text-align: center;
-  color: #4a3828;
+  color:#4a3828;
   font-weight: 600;
 }
 

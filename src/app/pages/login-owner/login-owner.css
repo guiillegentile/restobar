@@ -7,6 +7,8 @@
   margin: 2rem auto;
   box-shadow: 0 8px 25px rgba(0,0,0,0.08);
   animation: fadeIn 0.4s ease-in-out;
+  margin-left: 30%;
+  margin-top: 8%;
 }
 
 #container h1 {
