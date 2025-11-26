@@ -1,7 +1,7 @@
 <div class="container">
   <h2 class="page-title">Menú del restaurante</h2>
 
-// Si no hay menú, mostrar mensaje
+
 @if(!isOwner) {
     <div class="filter-container">
       <select class="category-select" [(ngModel)]="selectedCategory">
@@ -13,7 +13,6 @@
     </div>
   }
 
-// Mostrar los items del menú
 @if(menu && filteredItems.length > 0) {
     <div class="menu-grid">
       
