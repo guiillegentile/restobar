@@ -16,7 +16,7 @@ export class LoginPage {
   errorLogin = false;
   authService = inject(AuthService);
   isLoading = false;
-    
+//funcion asincrona para el login del cliente
   async login(form:any){
     console.log(form.value)
     this.errorLogin = false;
