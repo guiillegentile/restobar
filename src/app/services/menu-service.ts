@@ -16,10 +16,10 @@ export class MenuService {
     {
       restaurantId: '1',
       items: [
-        { id: '1', name: 'Pizza Muzza', price: 12.000, categoryId: 139, imageUrl: 'assets/DgT5l_dXUAA8yic.jpg' },
-        { id: '2', name: 'Pizza Napolitana', price: 12.500, isFavorite: true, categoryId: 139, imageUrl:'assets/8metlvp345_portada-pizza.jpg' },
-        { id: '3', name: 'Pizza 4 Quesos', price: 11.000, categoryId: 139, imageUrl:'assets/e8bb41b65869-pizzacuatroquesos-adob-t.webp'},
-        { id: '4', name: 'Pizza Rucula', price: 13.000, isHappyHour: true, categoryId: 139, imageUrl:'assets/JAMON-CRUDO-Y-RUCULA-2.webp' },
+        { id: '1', name: 'Pizza Muzza', price: 12000, categoryId: 139, imageUrl: 'assets/DgT5l_dXUAA8yic.jpg' },
+        { id: '2', name: 'Pizza Napolitana', price: 12500, isFavorite: true, categoryId: 139, imageUrl:'assets/8metlvp345_portada-pizza.jpg' },
+        { id: '3', name: 'Pizza 4 Quesos', price: 11000, categoryId: 139, imageUrl:'assets/e8bb41b65869-pizzacuatroquesos-adob-t.webp'},
+        { id: '4', name: 'Pizza Rucula', price: 13000, isHappyHour: true, categoryId: 139, imageUrl:'assets/JAMON-CRUDO-Y-RUCULA-2.webp' },
         { id: '5', name: 'Pizza Margarita', price: 13500, discount: 10, categoryId: 139, imageUrl:'assets/images (5).jpeg/pizza-margarita-1200x800.jpg' },
         { id: '6', name: 'Pizza Carbonara', price: 14000, categoryId: 139, imageUrl:'assets/images (6).jpeg' },
         { id: '37',name: 'Gaseosa - Linea Coca cola', price: 2000 , categoryId: 140 },
@@ -39,8 +39,8 @@ export class MenuService {
         { id: '10', name: 'hot roll', price: 14000, categoryId: 123, imageUrl: 'assets/Salmon-1.jpeg', description: 'Crujiente roll de sushi relleno de salmón tempurizado y queso crema, cubierto con salsa especial./ 8 unidades'  },
         { id: '11', name: 'Sushi Vegetariano', price: 13500, categoryId: 123, imageUrl: 'assets/images (1).jpeg', description: 'Variedad de sushi vegetariano con ingredientes frescos como aguacate, pepino y zanahoria./ 8 unidades'  },
         { id: '12', name: 'temakis', price: 14500, categoryId: 123, imageUrl:'assets/Img-Internas-Blog-Temaki_480x480.webp', description: 'Deliciosos temakis rellenos de ingredientes frescos y sabrosos./ 3 unidades'  },
-        { id: '43', name: 'Vino Blanco', price: 11.000, categoryId: 124, imageUrl: 'assets/BERNE_ROMANCE_LIFESTYLE_SQUARE_FORMAT_1400x_1_2c2585a9-2ec4-40f1-8b6d-1d62d9b9cf6c.webp'},
-        { id: '44', name: 'Vino Tinto', price: 13.000, isHappyHour: true, categoryId: 124, imageUrl  : 'assets/descarga (8).jpeg'},
+        { id: '43', name: 'Vino Blanco', price: 11000, categoryId: 124, imageUrl: 'assets/BERNE_ROMANCE_LIFESTYLE_SQUARE_FORMAT_1400x_1_2c2585a9-2ec4-40f1-8b6d-1d62d9b9cf6c.webp'},
+        { id: '44', name: 'Vino Tinto', price: 13000, isHappyHour: true, categoryId: 124, imageUrl  : 'assets/descarga (8).jpeg'},
         { id: '45', name: 'Gaseosas - Linea Coca-Cola', price: 13500, discount: 10, categoryId: 124 },
         { id: '46', name: 'Cerveza Artesanal', price: 14000, categoryId: 124, imageUrl  : 'assets/descarga (2).jpeg'  },
 
