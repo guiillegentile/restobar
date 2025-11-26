@@ -16,6 +16,7 @@ export class LoginPage {
   errorLogin = false;
   authService = inject(AuthService);
   isLoading = false;
+
 //funcion asincrona para el login del cliente
   async login(form:any){
     console.log(form.value)
@@ -26,6 +27,7 @@ export class LoginPage {
     }
     localStorage.setItem('role', 'client');
     this.isLoading = true;
+    
     await this.authService.login(form.value);
     this.isLoading = false;
     this.errorLogin = true;
