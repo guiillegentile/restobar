@@ -1,6 +1,7 @@
 <div class="container">
   <h2 class="page-title">Menú del restaurante</h2>
 
+// Si no hay menú, mostrar mensaje
 @if(!isOwner) {
     <div class="filter-container">
       <select class="category-select" [(ngModel)]="selectedCategory">
@@ -12,14 +13,13 @@
     </div>
   }
 
+// Mostrar los items del menú
 @if(menu && filteredItems.length > 0) {
     <div class="menu-grid">
       
       @for(item of filteredItems; track item.id){
         
         <div class="menu-card" [class.highlight-fav]="item.isFavorite">
-                 
-          
           <div class="card-content">
             <div class="card-header">
               <h3 class="product-name">{{ item.name }}</h3>
@@ -39,7 +39,6 @@
                   <i class="fa-regular fa-clock"></i> Happy Hour
                 </span>
               }
-              
               @if(item.discount && item.discount > 0) {
                 <span class="badge badge-discount">
                   <i class="fa-regular fa-tag"></i> {{ item.discount }}% OFF
