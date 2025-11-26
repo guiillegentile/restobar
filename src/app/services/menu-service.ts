@@ -93,7 +93,7 @@ export class MenuService {
         { id: '58', name: 'Vino Rosado', price: 11000, categoryId: 140, imageUrl  : 'assets/BERNE_ROMANCE_LIFESTYLE_SQUARE_FORMAT_1400x_1_2c2585a9-2ec4-40f1-8b6d-1d62d9b9cf6c.webp'  }, 
         { id: '59', name: 'Vino Tinto', price: 11000, categoryId: 140, imageUrl  : 'assets/descarga (8).jpeg'  },
         { id: '60', name: 'Gaseosa - Linea Coca-Cola', price: 4000, categoryId: 140, imageUrl  : 'assets/coca-006ef25d4b11679fa917251138441237-480-0.webp'  },
-        { id: '61', name: 'Cerveza Artesanal', price: 6000, categoryId: 140, imageUrl  : 'assets/descarga (2).jpeg'  },
+        { id: '61', name: 'Cerveza Artesanal', price: 6000,isHappyHour: true, categoryId: 140, imageUrl  : 'assets/descarga (2).jpeg'  },
         { id: '62', name: 'Tiramisú', price: 10000, categoryId: 142  },
         { id: '63', name: 'Toffie', price: 9000, categoryId: 142  },
         { id: '64', name: 'Chocotorta', price: 9500, categoryId: 142 }
@@ -111,7 +111,7 @@ export class MenuService {
         { id: '65', name: 'Papas Fritas', price: 7000, categoryId: 141, imageUrl  : 'assets/descarga.jpeg'  },
         { id: '66', name: 'Aros de Cebolla', price: 8000, categoryId: 141, imageUrl  : 'assets/descarga (1).jpeg'  },
         { id: '67', name: 'Gaseosa - Linea Coca-Cola', price: 3000, categoryId: 140, imageUrl  : 'assets/coca-006ef25d4b11679fa917251138441237-480-0.webp'  },
-        { id: '68', name: 'Cerveza Nacional', price: 6000, categoryId: 140, imageUrl  : 'assets/descarga (2).jpeg'  },
+        { id: '68', name: 'Cerveza Nacional', price: 6000, isHappyHour: true,categoryId: 140, imageUrl  : 'assets/descarga (2).jpeg'  },
         { id: '69', name: 'Helado de Chocolate', price: 4000, categoryId: 142  },
         { id: '70', name: 'Helado de Dulce de Leche', price: 6500, categoryId: 142 },
         { id: '71', name: 'Agua mineral', price: 3000, categoryId: 142}
