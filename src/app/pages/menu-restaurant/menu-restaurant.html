@@ -13,7 +13,7 @@
     </div>
   }
 
-@if(menu && filteredItems.length > 0) {
+@if(products && filteredItems.length > 0) {
     <div class="menu-grid">
       
       @for(item of filteredItems; track item.id){
@@ -23,29 +23,33 @@
             <div class="card-header">
               <h3 class="product-name">{{ item.name }}</h3>
               
-              <button 
-                class="btn-favorite" 
-                [class.active]="item.isFavorite" 
-                (click)="toggleFavorite($event, item.id)" 
-                title="Agregar a favoritos">
-                <i class="{{ item.isFavorite ? 'fa-solid fa-heart' : 'fa-regular fa-heart' }}"></i>
-              </button>
             </div>
 
             <div class="badges-container">
-              @if(item.isHappyHour) {
+              @if(item.hasHappyHour){
                 <span class="badge badge-happy">
-                  <i class="fa-regular fa-clock"></i> Happy Hour
+                  <i class="fa-solid fa-clock"></i> Happy Hour
                 </span>
               }
               @if(item.discount && item.discount > 0) {
                 <span class="badge badge-discount">
-                  <i class="fa-regular fa-tag"></i> {{ item.discount }}% OFF
+                  <i class="fa-solid fa-tag"></i> {{ item.discount }}% OFF
                 </span>
               }
             </div>
             
             <div class="price-row">
+
+
+              <!-- @if(item.hasHappyHour) {
+                <span class="old-price">$ {{ item.price | number:'1.0-0' }}</span>
+                <span class="new-price happy-text">
+                  $ {{ (item.price * 0.5) | number:'1.0-0' }}
+                </span>
+              } -->
+
+
+
               @if(item.discount && item.discount > 0) {
                 <span class="old-price">$ {{ item.price | number:'1.0-0' }}</span>
                 <span class="new-price">$ {{ item.price - (item.price * item.discount / 100) | number:'1.0-0' }}</span>
@@ -62,10 +66,10 @@
           @if(isOwner){
             <div class="owner-actions">
               <button class="btn-action btn-edit" (click)="editProduct(item.id)">
-                <i class="fa-regular fa-pen-to-square"></i> Editar
+                <i class="fa-solid fa-pen-to-square"></i> Editar
               </button>
               <button class="btn-action btn-delete" (click)="deleteProduct(item.id)">
-                <i class="fa-regular fa-trash-can"></i> Eliminar
+                <i class="fa-solid fa-trash-can"></i> Eliminar
               </button>
             </div>
           }
@@ -85,26 +89,31 @@
 
   @if(isOwner){
     <div class="admin-panel">
-      <h3><i class="fa-regular fa-screwdriver-wrench"></i> Panel de Administración</h3>
+      <h3><i class="fa-solid fa-screwdriver-wrench"></i> Panel de Administración</h3>
       
       <div class="admin-grid">
         <button class="btn-admin btn-primary" (click)="goToNewProduct()">
-          <i class="fa-regular fa-square-plus"></i> Nuevo Producto
+          <i class="fa-solid fa-square-plus"></i> Nuevo Producto
         </button>
 
         <button class="btn-admin btn-secondary" (click)="goToCategories()">
-          <i class="fa-regular fa-folder-open"></i> Categorías
+          <i class="fa-solid fa-folder-open"></i> Categorías
         </button>
 
         <button class="btn-admin btn-danger-outline" (click)="goToProfile()">
-          <i class="fa-regular fa-gear"></i> Mi Cuenta
+          <i class="fa-solid fa-gear"></i> Mi Cuenta
         </button>
+
+        <button class="btn-admin btn-danger" (click)="logout()">
+      <i class="fa-solid fa-right-from-bracket"></i> Salir
+    </button>
+        
       </div>
     </div>
   } @else {
     <div class="fab-container">
     <button class="btn-cart-fab" (click)="goToCart()">
-      <i class="fa-regular fa-cart-shopping"></i>
+      <i class="fa-solid fa-cart-shopping"></i>
     </button>
 
     <button class="btn-restaurant" (click)="goToRest()">

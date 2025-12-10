@@ -6,36 +6,62 @@
     <h2>Nuevo producto</h2>
   }
 
-  <form (ngSubmit)="saveProduct(prodForm)" #prodForm="ngForm">
+  <form [formGroup]="productForm" (submit)="saveProduct()">
 
 @if (isEditMode) {
-      <div>
-        <label for="id">ID</label>
-        <input id="id" name="id" type="text" [ngModel]="productData.id" [disabled]="true">
-      </div>
+<div>
+    <label for="id">ID</label>
+    <input 
+      id="id" 
+      type="text" 
+      [value]="currentProductId" 
+      disabled
+    >
+  </div>
     }
 
     <div>
       <label for="name">Nombre*</label>
-      <input id="name" name="name" type="text" [(ngModel)]="productData.name" required minlength="2" maxlength="40" #nameField="ngModel">
-      @if(nameField.dirty && nameField.invalid) {
-        <p class="error">El nombre es obligatorio y debe tener al menos 2 caracteres.</p>
-      }
+      <input formControlName="name">
+    </div>
+
+    <div>
+      <label for="price">Descripción*</label>
+      <input formControlName="description">
     </div>
 
     <div>
       <label for="price">Precio*</label>
-      <input id="price" name="price" type="number" [(ngModel)]="productData.price" required min="1" #priceField="ngModel">
-      @if(priceField.dirty && priceField.invalid) {
-        <p class="error">El precio es obligatorio y debe ser mayor a 0.</p>
-      }
+      <input formControlName="price">
     </div>
 
-    @if(errorEnBack) {
-      <p class="error">Error al guardar, intente nuevamente.</p>
-    }
+  <div>
+    <label>Categoría</label>
 
-    <button [disabled]="prodForm.invalid || isLoading">
+    <select formControlName="categoryId">
+      @for(r of categories; track r.id){
+        <option [value]="r.id">
+          {{ r.name }}
+        </option>
+      }
+    </select>
+
+  </div>
+      <div>
+      <label>Descuento</label>
+      <input formControlName="discount">
+    </div>
+
+<div class="toggle-row">
+  <label class="switch">
+    <input type="checkbox" formControlName="hasHappyHour">
+    <span class="slider"></span>
+  </label>
+  <span class="toggle-label">Happy Hour</span>
+</div>
+
+
+    <button [disabled]="productForm.invalid">
       {{ isEditMode ? 'Guardar cambios' : 'Crear Producto' }}
     </button>
 

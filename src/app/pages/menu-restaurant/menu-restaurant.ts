@@ -5,6 +5,7 @@ import { MenuService } from '../../services/menu-service';
 import { RestaurantService } from '../../services/restaurant-service';
 import { CategoryService } from '../../services/categories-service';
 import { FormsModule } from '@angular/forms';
+import { Products } from '../../services/products-service';
 
 @Component({
   selector: 'app-menu-restaurant',
@@ -26,28 +27,34 @@ export class MenuRestaurantPage implements OnInit {
   restaurantId = this.route.snapshot.params['id'];
   menu = this.menuService.getMenuByRestaurant(this.restaurantId);
 
-  selectedCategory: string = ""; 
+  selectedCategory: string = "";
   categoryList: any[] = [];
-  
-  
+
+
+  private _productService = inject(Products);
+  products: any[] = [];
+
 
   constructor() {
     this.isOwner = localStorage.getItem('role') === 'owner';
   }
 
   async ngOnInit() {
-    this.categoryList = await this.categoryService.getCategories();
+    this.categoryList = await this.categoryService.getAllCategories(this.restaurantId);
+    if(localStorage.getItem("token")) {
+      this.products = await this._productService.getMyProducts();
+    }else{
+      this.products = await this._productService.getProductsById(Number(this.restaurantId));
+    }
     this.cdr.detectChanges();
-    console.log('Categorías cargadas:', this.categoryList);
   }
 
-get filteredItems() {
-    if (!this.menu || !this.menu.items) return [];
-
+  get filteredItems() {
+    if (!this.products) return [];
     if (this.selectedCategory === "") {
-      return this.menu.items;
+      return this.products;
     }
-    return this.menu.items.filter((item: any) => 
+    return this.products.filter((item: any) =>
       String(item.categoryId) === String(this.selectedCategory)
     );
   }
@@ -61,15 +68,19 @@ get filteredItems() {
     this.menuService.toggleFavorite(itemId);
   }
 
-  editProduct(id: string) {
-    this.router.navigate(['/edit-product', id]);
+  editProduct(productId: string) {
+    this.router.navigate(['/edit-product', productId], {
+      queryParams: { restaurantId: this.restaurantId }
+    });
   }
 
   async deleteProduct(productId: string) {
     if (!confirm('¿Estás seguro de que deseas eliminar este producto?')) return;
 
     try {
-      await this.menuService.deleteProduct(productId);
+      await this._productService.deleteProduct(productId);
+      this.products = this.products.filter((product: any) => product.id !== productId);
+      this.cdr.detectChanges();
       alert('Producto eliminado');
     } catch (error) {
       console.error(error);
@@ -96,7 +107,14 @@ get filteredItems() {
   goToRest() {
     this.router.navigate(['/restaurant-page']);
   }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    this.router.navigate(['/login-owner']);
+  }
 }
+
 
 
 

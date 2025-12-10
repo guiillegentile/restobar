@@ -38,7 +38,6 @@ cdr = inject(ChangeDetectorRef);
       console.error('Hubo un error cargando las categorías:', error);
     } finally {this.cdr.detectChanges();
       this.isLoading = false;
-      console.log(this.isLoading)
     }
   }
 
@@ -100,4 +99,4 @@ cdr = inject(ChangeDetectorRef);
     this.categoryData = { id: '', name: '' };
   }
 
-}
+} 

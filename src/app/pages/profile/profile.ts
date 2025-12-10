@@ -41,7 +41,7 @@ export class Profile implements OnInit {
         lastName: data.lastName,
         address: data.address,
         phoneNumber: data.phoneNumber,
-        password: '' // vacío para no mostrar la clave
+        password: '' 
       });
 
     } catch (error) {

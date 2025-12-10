@@ -1,16 +1,43 @@
 <div class="container">
-  
+
   @if (!isLoading && product) {
-    
+
     <div class="product-card">
-      
+
       <div class="product-header">
-      <img [src]="product.imageUrl" alt="">
-        
-        <h1 class="product-title">{{ product.name }}</h1>
-        <span class="price-badge">$ {{ product.price | number:'1.0-0' }}</span>
+
+        <div class="badges-row">
+          @if (product.hasHappyHour) {
+            <span class="badge happy-badge">
+              <i class="fa-solid fa-champagne-glasses"></i> Happy Hour
+            </span>
+          }
+          @if (product.discount && product.discount > 0) {
+            <span class="badge discount-badge">
+              -{{ product.discount }}% OFF
+            </span>
+          }
+        </div>
+
+        <div class="title-section">
+          <span class="category-label">{{ product.categoryName || 'Sin Categoría' }}</span>
+          <h1 class="product-title">{{ product.name }}</h1>
+        </div>
+
+        <div class="price-wrapper">
+          @if (product.discount && product.discount > 0) {
+            <span class="price-original text-crossed">
+              $ {{ product.price | number:'1.0-0' }}
+            </span>
+            <span class="price-final">
+              $ {{ (product.price - (product.price * product.discount / 100)) | number:'1.0-0' }}
+            </span>
+          } @else {
+            <span class="price-final">$ {{ product.price | number:'1.0-0' }}</span>
+          }
+        </div>
+
       </div>
-    
 
       <hr class="divider">
 
@@ -29,19 +56,25 @@
 
       <div class="quantity-selector">
         <button class="btn-qty" (click)="decreaseQty()" [disabled]="quantity <= 1">
-          <i class="fa-regular fa-minus"></i>
+          <i class="fa-solid fa-minus"></i>
         </button>
 
         <span class="qty-number">{{ quantity }}</span>
 
         <button class="btn-qty" (click)="increaseQty()">
-          <i class="fa-regular fa-plus"></i>
+          <i class="fa-solid fa-plus"></i>
         </button>
       </div>
 
       <button class="btn-add-cart" (click)="addToCart()">
         <span class="btn-label">Agregar al pedido</span>
-        <span class="total-price"> $ {{ (product.price * quantity) | number:'1.0-0' }}
+        
+        <span class="total-price">
+          @if (product.discount > 0) {
+            $ {{ ((product.price - (product.price * product.discount / 100)) * quantity) | number:'1.0-0' }}
+          } @else {
+            $ {{ (product.price * quantity) | number:'1.0-0' }}
+          }
         </span>
       </button>
 
@@ -49,10 +82,9 @@
 
   } @else if (!isLoading && error) {
     <div class="error-container">
-      <h3><i class="fa-regular fa-face-frown"></i> Ups...</h3>
+      <h3><i class="fa-solid fa-face-frown"></i> Ups...</h3>
       <p>No pudimos encontrar el producto.</p>
     </div>
-
   }
 
 </div>

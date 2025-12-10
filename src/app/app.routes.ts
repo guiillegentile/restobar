@@ -1,7 +1,5 @@
 import { Routes } from '@angular/router';
-import { MainPage } from './pages/main-page/main-page';
 import { LoginOwnerComponent } from './pages/login-owner/login-owner';
-import { LoginPage } from './pages/login-client/login-client';
 import { RegisterPage } from './pages/register-client/register-client';
 import { MenuRestaurantPage } from './pages/menu-restaurant/menu-restaurant';
 import { NewProductPage } from './pages/new-product/new-product';
@@ -10,28 +8,29 @@ import { Categories } from './pages/categories/categories';
 import { Profile } from './pages/profile/profile';
 import { ProductDetail } from './pages/product-detail/product-detail';
 import { Cart } from './pages/cart/cart';
+import { authGuard } from './guard/auth-guard';
+import { publicGuard } from './guard/public-guard';
 
 
 export const routes: Routes = [
   {
     path: '',
-    component: MainPage
+    component: RestaurantMenuPage,
+    canActivate: [publicGuard]
   },
   {
     path: 'login-owner',
-    component: LoginOwnerComponent
+    component: LoginOwnerComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'menu/:id',
     component: MenuRestaurantPage
   },
   {
-    path: 'login-client',
-    component: LoginPage   
-  },
-  {
     path: 'register-client',
-    component: RegisterPage
+    component: RegisterPage,
+    canActivate: [authGuard]
   },
   {
     path: 'restaurant-page',

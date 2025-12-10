@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth-service';
@@ -13,17 +13,20 @@ import { Spinner } from '../../components/spinner/spinner';
   templateUrl: './login-owner.html',
   styleUrl: './login-owner.css'
 })
-export class LoginOwnerComponent {
-
-
-errorLogin = false;
-  isLoading = false;
-
+export class LoginOwnerComponent implements OnInit{
   authService = inject(AuthService);
   router = inject(Router);
   restaurantService = inject(RestaurantService);
+  cdr = inject(ChangeDetectorRef);
 
-  restaurants = this.restaurantService.getRestaurants();
+
+  errorLogin = false;
+  isLoading = false;
+  restaurants : any[] = [];
+
+  async ngOnInit() {
+    this.restaurants = await this.restaurantService.getRestaurants();
+  }
 
   async loginOwner(form: any) {
     this.errorLogin = false;
@@ -33,18 +36,21 @@ errorLogin = false;
     this.isLoading = true;
     
     try {
-      localStorage.setItem('role', 'owner'); 
-      
       await this.authService.loginOwner(form.value);
-
-      const restaurantId = form.value.restaurantId;
+      
+      localStorage.setItem('role', 'owner'); 
+      const restaurantId = this.authService.currentUser()?.id;
       this.router.navigate(['/menu', restaurantId]);
-
+      this.isLoading = false;
+      this.cdr.detectChanges();
     } catch (error) {
       console.error(error);
       this.errorLogin = true;
+      this.isLoading = false;
+      this.cdr.detectChanges();
     } finally {
       this.isLoading = false;
+      this.cdr.detectChanges();
     }
   }
 }

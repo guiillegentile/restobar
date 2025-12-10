@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { MenuService } from '../../services/menu-service';
 import {  CartService } from '../../services/cart-service';
 import { CommonModule } from '@angular/common';
+import { Products} from '../../services/products-service';
 
 @Component({
   selector: 'app-product-detail',
@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class ProductDetail {
 private route = inject(ActivatedRoute);
 private router = inject(Router);
-  private menuService = inject(MenuService);
+  private _productService = inject(Products);
   private cdr = inject(ChangeDetectorRef)
   private cartService = inject(CartService);
 quantity: number = 1;
@@ -26,7 +26,7 @@ quantity: number = 1;
   async ngOnInit() {
   
     const productId = this.route.snapshot.paramMap.get('id');
-    console.log(productId)
+    
     if (productId) {
       await this.loadProduct(productId);
     } else {
@@ -40,8 +40,8 @@ quantity: number = 1;
     try {
       this.isLoading = true;
       
-      this.product = await this.menuService.getProductById(id);
-      console.log(this.product)
+      this.product = await this._productService.getProductById(Number(id));
+      
     } catch (err) {
       console.error(err);
       this.error = true;

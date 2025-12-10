@@ -4,10 +4,10 @@
   <form #loginForm="ngForm" (ngSubmit)="loginOwner(loginForm)">
     
   <div>
-    <label for="email">Correo electrónico</label>
+    <label for="email">Nombre del restaurant</label>
     <input id="email" name="email" type="email" ngModel #email="ngModel" required autocomplete="email">
     @if (email.invalid && !email.pristine) {
-      <p class="error">Debe colocar un correo electrónico.</p>
+      <p class="error">Este campo es obligatorio.</p>
     }
   </div>
 
@@ -16,23 +16,6 @@
     <input id="password" name="password" type="password" ngModel #password="ngModel" required minlength="4" autocomplete="current-password">
     @if (password.invalid && !password.pristine) {
       <p class="error">Debe colocar una contraseña de al menos 4 caracteres.</p>
-    }
-  </div>
-
-  <div>
-    <label for="restaurantId">Su restaurante</label>
-
-    <select id="restaurantId" name="restaurantId" ngModel #restaurantId="ngModel" required>
-      <option value="" disabled selected>Seleccione su restaurante</option>
-      @for(r of restaurants; track r.id){
-        <option [value]="r.id">
-          {{ r.name }}
-        </option>
-      }
-    </select>
-
-    @if (restaurantId.invalid && !restaurantId.pristine) {
-      <p class="error">Debe seleccionar un restaurante.</p>
     }
   </div>
 
@@ -45,6 +28,11 @@
   @if (errorLogin) {
     <p class="error">Datos incorrectos o error de conexión.</p>
   }
+
+  <div class="register-info">
+    ¿No tenés cuenta? 
+    <a routerLink="/register-client">Registrate acá</a>
+  </div>
 
 </form>
 </div>

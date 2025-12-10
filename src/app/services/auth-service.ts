@@ -1,18 +1,34 @@
-import { inject, Injectable } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginData } from '../interfaces/auth';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
+import { RestaurantService } from './restaurant-service';
 
+interface User {
+  address: string;
+  firstName: string;
+  id: number;
+  lastName: string;
+  password: string;
+  phoneNumber: string;
+  restaurantName: string;
+}
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class AuthService {
 
   router = inject(Router);
   http = inject(HttpClient);
+  private _restaurantService = inject(RestaurantService)
   
   token: string | null = localStorage.getItem('token');
+  private _currentUser = signal<User | null>(null);
+  public currentUser = this._currentUser.asReadonly();
+  public isLoggedIn = computed(() => !!this._currentUser())
 
   
   revisionTokenInterval?: ReturnType<typeof setInterval>;
@@ -38,20 +54,26 @@ async login(loginData: LoginData) {
          this.revisionTokenInterval = this.revisionToken();
       }
 
+      const userId = this.getUserIdFromToken();
+      const user = await this._restaurantService.getRestaurantById(userId ?? 0);
+      this._currentUser.set(user);
+      
+      
+      return this.token;
+
     } catch (error) {
       console.error('Error en login:', error);
+      throw error;
     }
   }
 
   
   async loginOwner(formValue: any) {
     const loginData: LoginData = {
-      email: formValue.email,
+      restaurantName: formValue.email,
       password: formValue.password
     };
-
-    
-    await this.login(loginData);
+    return await this.login(loginData);
   }
 
   
@@ -90,4 +112,17 @@ async login(loginData: LoginData) {
       }
     }, 600);
   }
+
+
+   getUserIdFromToken(): number | null {
+        const token = localStorage.getItem('token');
+        if (!token) return null;
+        try {
+            const payloadPart = token.split('.')[1];
+            const payload = JSON.parse(atob(payloadPart));
+            return payload.sub;
+        } catch (error) {
+            return null;
+        }
+    }
 }
