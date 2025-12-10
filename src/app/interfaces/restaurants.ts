@@ -2,7 +2,7 @@ export interface Restaurant {
     id: string;
     name: string;
     address: string;
-    restaurantname: string;
+    restaurantName: string;
   }
   
   
