@@ -74,3 +74,28 @@
     text-align: center;
   }
 }
+
+.owner-link {
+  display: block;
+  width: 100%;
+  max-width: 600px; 
+  margin: 1.5rem auto 2rem auto;
+  padding: 0.9rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  background: #e57c23;
+  color: #fff;
+  border: 2px solid #e57c23;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+
+.owner-link:hover {
+  background: #fff;
+  color: #e57c23;
+  border-color: #e57c23;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
