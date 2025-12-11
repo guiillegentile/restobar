@@ -43,15 +43,6 @@
   margin: 0;
 }
 
-.price-badge {
-  display: inline-block;
-  background-color: #e57c23;
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1rem;
-}
 
 .divider {
   border: none;
@@ -149,7 +140,6 @@
   font-weight: 700;
 }
 
-
 .error-container {
   text-align: center;
   padding: 30px 0;
@@ -160,4 +150,49 @@
   margin-bottom: 8px;
   font-size: 1.3rem;
   color: #333;
+}
+
+.discount-badge {
+  display: inline-block;
+  background-color: #e57c23;
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.happy-badge {
+  display: inline-block;
+  background-color: #4a3828;
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.price-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.price-original {
+  color: #9c8f85;
+  font-size: 1rem;
+  text-decoration: line-through;
+}
+
+.price-final {
+  color: #4a3828;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.badges-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
