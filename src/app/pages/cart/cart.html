@@ -7,14 +7,12 @@
     <div class="items-list">
       @for (item of cartItems; track item.product.id) {
         <div class="cart-item">
-          
-          <!-- Info Producto -->
+
           <div class="item-info">
             <h3 class="item-name">{{ item.product.name }}</h3>
             <p class="item-price">$ {{ item.product.price | number:'1.0-0' }} c/u</p>
           </div>
 
-          <!-- Controles de Cantidad -->
           <div class="item-actions">
             
             <div class="qty-control">
@@ -23,7 +21,6 @@
               <button class="btn-qty plus" (click)="increaseQty(item)">+</button>
             </div>
 
-            <!-- Subtotal del item -->
             <span class="item-subtotal">$ {{ item.subtotal | number:'1.0-0' }}</span>
             
             <button class="btn-remove" (click)="removeItem(item)">
@@ -35,7 +32,6 @@
       }
     </div>
 
-    <!-- RESUMEN FINAL (Sticky Bottom) -->
     <div class="checkout-panel">
       
       <div class="summary-row">
