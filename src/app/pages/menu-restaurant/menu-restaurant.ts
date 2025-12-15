@@ -25,7 +25,6 @@ export class MenuRestaurantPage implements OnInit {
   private menuService = inject(MenuService);
 
   restaurantId = this.route.snapshot.params['id'];
-  menu = this.menuService.getMenuByRestaurant(this.restaurantId);
 
   selectedCategory: string = "";
   categoryList: any[] = [];
@@ -41,11 +40,19 @@ export class MenuRestaurantPage implements OnInit {
 
   async ngOnInit() {
     this.categoryList = await this.categoryService.getAllCategories(this.restaurantId);
+    let rawProducts = [];
     if(localStorage.getItem("token")) {
-      this.products = await this._productService.getMyProducts();
+      rawProducts = await this._productService.getMyProducts();
     }else{
-      this.products = await this._productService.getProductsById(Number(this.restaurantId));
+      rawProducts = await this._productService.getProductsById(Number(this.restaurantId));
     }
+
+    this.products = rawProducts.map((prod: any) => {
+      return {
+        ...prod,
+        isFavorite: this.menuService.isFavorite(prod.id)
+      }
+    })
     this.cdr.detectChanges();
   }
 
@@ -65,7 +72,13 @@ export class MenuRestaurantPage implements OnInit {
 
   toggleFavorite(event: Event, itemId: string) {
     event.stopPropagation();
-    this.menuService.toggleFavorite(itemId);
+    const isNowFav = this.menuService.toggleFavorite(itemId);
+    const indexProduct = this.products.findIndex((p: any) => p.id === itemId);
+    if(indexProduct > -1 ){
+      this.products[indexProduct].isFavorite = isNowFav;
+      this.products = [...this.products];
+      this.cdr.detectChanges()
+    }
   }
 
   editProduct(productId: string) {
@@ -114,7 +127,6 @@ export class MenuRestaurantPage implements OnInit {
     this.router.navigate(['/login-owner']);
   }
 }
-
 
 
 

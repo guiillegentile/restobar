@@ -39,14 +39,20 @@ export class CartService {
     
     const existingItemIndex = currentItems.findIndex(item => item.product.id === product.id);
 
+    
     if (existingItemIndex > -1) {
       
       const item = currentItems[existingItemIndex];
+      console.log(item)
       item.quantity += quantity;
       item.subtotal = item.quantity * item.product.price;
       currentItems[existingItemIndex] = item;
     } else {
-      
+
+      if(product.discount > 0){
+        product.price = product.price - (product.price * product.discount)/100
+      }
+  
       currentItems.push({
         product: product,
         quantity: quantity,

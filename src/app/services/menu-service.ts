@@ -11,7 +11,7 @@ export class MenuService {
 
   private _apiUrl = 'https://w370351.ferozo.com/api/products';
   private _http = inject(HttpClient);
-
+  private FAV_STORAGE_KEY = 'my_restaurant_favorites';
   private menus: RestaurantMenu[] = [
   ];
   
@@ -93,14 +93,30 @@ updateProduct(id: string, data: any): Promise<boolean> {
      return Promise.reject('No encontrado');
   }
 
+  getStoredFavorites(): string[] {
+    const stored = localStorage.getItem(this.FAV_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  }
+
+  isFavorite(idProduct : string): boolean{
+    const favorites = this.getStoredFavorites();
+    return favorites.some(id => id == idProduct);
+  }
+
+
   toggleFavorite(productId: string): boolean {
-    const allItems = this.menus.flatMap(menu => menu.items);
-    const item = allItems.find(i => i.id === productId);
-    
-    if (item) {
-      item.isFavorite = !item.isFavorite;
-      return item.isFavorite;
+    let favorites = this.getStoredFavorites();
+    let isFavorite = false;
+
+    if (favorites.includes(productId)) {
+      favorites = favorites.filter(id => id != productId);
+      isFavorite = false;
+    } else {
+      favorites.push(productId);
+      isFavorite = true
     }
-    return false;
+
+    localStorage.setItem(this.FAV_STORAGE_KEY, JSON.stringify(favorites));
+    return isFavorite
   }
 }
