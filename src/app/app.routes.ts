@@ -34,8 +34,10 @@ export const routes: Routes = [
   },
   {
     path: 'restaurant-page',
-    component: RestaurantMenuPage
+    component: RestaurantMenuPage,
+    canActivate: [publicGuard]
   },
+  
   {
     path: 'new-product/:id',
     component: NewProductPage
