@@ -1,6 +1,4 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { firstValueFrom } from "rxjs";
 
 export interface Category {
   id: string;
@@ -9,52 +7,68 @@ export interface Category {
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService {
+
   private _apiUrl = 'https://w370351.ferozo.com/api';
-  private _httpClient = inject(HttpClient);
 
-
-  private getHeaders(): HttpHeaders {
+  private getHeaders(): HeadersInit {
     const rawToken = localStorage.getItem('token');
     const token = rawToken ? rawToken.replace(/"/g, '') : '';
-    return new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
+    return {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    };
   }
-
 
   private getUserIdFromToken(): string | null {
     const token = localStorage.getItem('token');
     if (!token) return null;
+
     try {
       const payloadPart = token.split('.')[1];
       const payload = JSON.parse(atob(payloadPart));
       return payload.sub;
-    } catch (error) {
+    } catch {
       return null;
     }
   }
 
-
   async getCategories(): Promise<Category[]> {
     try {
       const userId = this.getUserIdFromToken();
-      
       if (!userId) throw new Error('Usuario no identificado');
-      return await firstValueFrom(
-        this._httpClient.get<Category[]>(`${this._apiUrl}/users/${userId}/categories`)
+
+      const res = await fetch(
+        `${this._apiUrl}/users/${userId}/categories`,
+        {
+          method: 'GET',
+          headers: this.getHeaders()
+        }
       );
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      return await res.json();
+
     } catch (error) {
       console.error(error);
       return [];
     }
   }
 
-  async getAllCategories(id: number) {
+  async getAllCategories(id: number): Promise<Category[]> {
     try {
-
-      return await firstValueFrom(
-        this._httpClient.get<Category[]>(`${this._apiUrl}/users/${id}/categories`)
+      const res = await fetch(
+        `${this._apiUrl}/users/${id}/categories`,
+        {
+          method: 'GET',
+          headers: this.getHeaders()
+        }
       );
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      return await res.json();
+
     } catch (error) {
       console.error(error);
       return [];
@@ -63,45 +77,60 @@ export class CategoryService {
 
   async createCategory(name: string) {
     try {
-      return await firstValueFrom(
-        this._httpClient.post(
-          `${this._apiUrl}/categories`,
-          { name },
-          { headers: this.getHeaders() }
-        )
+      const res = await fetch(
+        `${this._apiUrl}/categories`,
+        {
+          method: 'POST',
+          headers: this.getHeaders(),
+          body: JSON.stringify({ name })
+        }
       );
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      return await res.json();
+
     } catch (error) {
       console.error(error);
       throw error;
     }
   }
-
 
   async editCategory(id: string, name: string) {
-
     try {
-      return await firstValueFrom(
-        this._httpClient.put(
-          `${this._apiUrl}/categories/${id}`,
-          { name },
-          { headers: this.getHeaders() }
-        )
+      const res = await fetch(
+        `${this._apiUrl}/categories/${id}`,
+        {
+          method: 'PUT',
+          headers: this.getHeaders(),
+          body: JSON.stringify({ name })
+        }
       );
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      return await res.json();
+
     } catch (error) {
       console.error(error);
       throw error;
     }
   }
-
 
   async deleteCategory(id: string) {
     try {
-      return await firstValueFrom(
-        this._httpClient.delete(
-          `${this._apiUrl}/categories/${id}`,
-          { headers: this.getHeaders() }
-        )
+      const res = await fetch(
+        `${this._apiUrl}/categories/${id}`,
+        {
+          method: 'DELETE',
+          headers: this.getHeaders()
+        }
       );
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.json();   // Return the response JSON if needed
+      // return res.ok;  // Or simply return true if deletion was successful
+
     } catch (error) {
       console.error(error);
       throw error;

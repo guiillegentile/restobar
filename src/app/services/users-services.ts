@@ -1,7 +1,5 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
-import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
 
 export interface RegisterData {
   restaurantName: string;
@@ -17,21 +15,24 @@ export interface RegisterData {
 })
 export class UsersService {
 
-  private _apiUrl = 'https://w370351.ferozo.com/api/users';
-  private _httpClient = inject(HttpClient);
-
-
-  async register(registerData: RegisterData) {
+  async register(registerData: RegisterData): Promise<User> {
     try {
-      return firstValueFrom(
-        this._httpClient.post<User>(`${this._apiUrl}`, registerData, {
-          headers: { "Content-Type": "application/json" }
-        })
-      );
-      
+      const res = await fetch('https://w370351.ferozo.com/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(registerData)
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error ${res.status}`);
+      }
+
+      return await res.json();
+
     } catch (error) {
       throw error;
     }
   }
-
 }

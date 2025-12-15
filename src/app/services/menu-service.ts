@@ -1,23 +1,19 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MenuItem, RestaurantMenu } from '../interfaces/menu';
-import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class MenuService {
 
   private _apiUrl = 'https://w370351.ferozo.com/api/products';
-  private _http = inject(HttpClient);
   private FAV_STORAGE_KEY = 'my_restaurant_favorites';
-  private menus: RestaurantMenu[] = [
-  ];
-  
-addProductToMenu(restaurantId: string, productData: any): Promise<boolean> {
+
+  private menus: RestaurantMenu[] = [];
+
+  addProductToMenu(restaurantId: string, productData: any): Promise<boolean> {
     return new Promise((resolve) => {
-      
+
       const menu = this.menus.find(m => m.restaurantId === restaurantId);
 
       if (menu) {
@@ -32,10 +28,8 @@ addProductToMenu(restaurantId: string, productData: any): Promise<boolean> {
           });
         });
 
-        
         const newId = (maxId + 1).toString();
 
-        
         const newProduct = {
           id: newId,
           name: productData.name,
@@ -43,22 +37,19 @@ addProductToMenu(restaurantId: string, productData: any): Promise<boolean> {
           categoryId: productData.categoryId
         };
 
-        
         menu.items.push(newProduct);
-        
         resolve(true);
       } else {
         resolve(false);
       }
     });
   }
-  
-  
+
   getMenuByRestaurant(id: string) {
     return this.menus.find(m => m.restaurantId === id);
   }
 
-async getProductById(id: string) {
+  async getProductById(id: string) {
     for (const menu of this.menus) {
       const foundItem = menu.items.find(item => item.id === id);
       if (foundItem) {
@@ -68,7 +59,7 @@ async getProductById(id: string) {
     throw new Error('Producto no encontrado');
   }
 
-updateProduct(id: string, data: any): Promise<boolean> {
+  updateProduct(id: string, data: any): Promise<boolean> {
     return new Promise((resolve) => {
       for (const menu of this.menus) {
         const index = menu.items.findIndex(i => i.id === id);
@@ -83,14 +74,14 @@ updateProduct(id: string, data: any): Promise<boolean> {
   }
 
   deleteProduct(productId: string) {
-     for (const menu of this.menus) {
-       const index = menu.items.findIndex(item => item.id === productId);
-       if (index !== -1) {
-         menu.items.splice(index, 1); 
-         return Promise.resolve(true);
-       }
-     }
-     return Promise.reject('No encontrado');
+    for (const menu of this.menus) {
+      const index = menu.items.findIndex(item => item.id === productId);
+      if (index !== -1) {
+        menu.items.splice(index, 1);
+        return Promise.resolve(true);
+      }
+    }
+    return Promise.reject('No encontrado');
   }
 
   getStoredFavorites(): string[] {
@@ -98,11 +89,10 @@ updateProduct(id: string, data: any): Promise<boolean> {
     return stored ? JSON.parse(stored) : [];
   }
 
-  isFavorite(idProduct : string): boolean{
+  isFavorite(idProduct: string): boolean {
     const favorites = this.getStoredFavorites();
     return favorites.some(id => id == idProduct);
   }
-
 
   toggleFavorite(productId: string): boolean {
     let favorites = this.getStoredFavorites();
@@ -113,10 +103,10 @@ updateProduct(id: string, data: any): Promise<boolean> {
       isFavorite = false;
     } else {
       favorites.push(productId);
-      isFavorite = true
+      isFavorite = true;
     }
 
     localStorage.setItem(this.FAV_STORAGE_KEY, JSON.stringify(favorites));
-    return isFavorite
+    return isFavorite;
   }
 }
