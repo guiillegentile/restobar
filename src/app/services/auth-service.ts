@@ -11,7 +11,6 @@ import { User } from '../interfaces/user';
   providedIn: 'root'
 })
 
-
 export class AuthService {
 
   router = inject(Router);
@@ -95,10 +94,7 @@ async login(loginData: LoginData) {
             .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
             .join('')
         );
-
         const claims: { exp: number } = JSON.parse(jsonPayload);
-
-        
         if (new Date(claims.exp * 1000) < new Date()) {
           this.logout();
         }
