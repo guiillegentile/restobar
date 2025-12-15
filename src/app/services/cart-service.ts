@@ -34,12 +34,8 @@ export class CartService {
   }
 
   addToCart(product: any, quantity: number) {
-    const currentItems = this.cartItems.value;
-    
-    
+    const currentItems = this.cartItems.value;    
     const existingItemIndex = currentItems.findIndex(item => item.product.id === product.id);
-
-    
     if (existingItemIndex > -1) {
       
       const item = currentItems[existingItemIndex];
