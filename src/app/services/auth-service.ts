@@ -4,16 +4,9 @@ import { LoginData } from '../interfaces/auth';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { RestaurantService } from './restaurant-service';
+import { User } from '../interfaces/user';
 
-interface User {
-  address: string;
-  firstName: string;
-  id: number;
-  lastName: string;
-  password: string;
-  phoneNumber: string;
-  restaurantName: string;
-}
+
 @Injectable({
   providedIn: 'root'
 })
