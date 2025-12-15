@@ -22,7 +22,21 @@
           <div class="card-content">
             <div class="card-header">
               <h3 class="product-name">{{ item.name }}</h3>
+              @if(!isOwner){
+            
+            <button 
+              class="btn-favorite" 
+              [class.active]="item.isFavorite"
+              (click)="toggleFavorite($event, item.id)">
               
+              @if(item.isFavorite) {
+                <i (click)="toggleFavorite($event,item.id)" class="fa-solid fa-heart"></i>
+              } @else {
+                <i (click)="toggleFavorite($event,item.id)" class="fa-regular fa-heart"></i>
+              }
+            </button>
+              }
+
             </div>
 
             <div class="badges-container">
@@ -39,17 +53,6 @@
             </div>
             
             <div class="price-row">
-
-
-              <!-- @if(item.hasHappyHour) {
-                <span class="old-price">$ {{ item.price | number:'1.0-0' }}</span>
-                <span class="new-price happy-text">
-                  $ {{ (item.price * 0.5) | number:'1.0-0' }}
-                </span>
-              } -->
-
-
-
               @if(item.discount && item.discount > 0) {
                 <span class="old-price">$ {{ item.price | number:'1.0-0' }}</span>
                 <span class="new-price">$ {{ item.price - (item.price * item.discount / 100) | number:'1.0-0' }}</span>
