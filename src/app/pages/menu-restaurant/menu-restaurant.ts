@@ -20,7 +20,7 @@ export class MenuRestaurantPage implements OnInit {
   router = inject(Router);
   categoryService = inject(CategoryService);
   restaurantService = inject(RestaurantService);
-  cdr = inject(ChangeDetectorRef);
+// Borre el ChangeDetectorRef porque no se estaba usando o no entendia para que estaba
   private route = inject(ActivatedRoute);
   private menuService = inject(MenuService);
 
@@ -53,7 +53,6 @@ export class MenuRestaurantPage implements OnInit {
         isFavorite: this.menuService.isFavorite(prod.id)
       }
     })
-    this.cdr.detectChanges();
   }
 
   get filteredItems() {
@@ -77,7 +76,7 @@ export class MenuRestaurantPage implements OnInit {
     if(indexProduct > -1 ){
       this.products[indexProduct].isFavorite = isNowFav;
       this.products = [...this.products];
-      this.cdr.detectChanges()
+
     }
   }
 
@@ -93,7 +92,6 @@ export class MenuRestaurantPage implements OnInit {
     try {
       await this._productService.deleteProduct(productId);
       this.products = this.products.filter((product: any) => product.id !== productId);
-      this.cdr.detectChanges();
       alert('Producto eliminado');
     } catch (error) {
       console.error(error);

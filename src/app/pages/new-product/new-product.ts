@@ -65,9 +65,7 @@ export class NewProductPage implements OnInit {
 
   restaurantId = "";
   currentProductId: string | null = null;
-
   prodForm = viewChild<NgForm>('prodForm');
-
   isEditMode = false;
 
   productData = {
