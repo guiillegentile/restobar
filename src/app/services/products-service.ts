@@ -138,7 +138,7 @@ export class Products {
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-      // si tu backend no devuelve body, cambiá esto por: return res.ok;
+      // si el backend no devuelve body, cambiar esto x return res.ok;
       return await res.json();
 
     } catch (error) {
