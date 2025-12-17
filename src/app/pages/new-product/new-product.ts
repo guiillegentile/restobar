@@ -79,7 +79,7 @@ export class NewProductPage implements OnInit {
     
     if (this.isEditMode) {
       this.currentProductId = this.route.snapshot.paramMap.get('id');
-      this.restaurantId = this.route.snapshot.paramMap.get('id') ?? ""; // Ojo con esta lógica, asegúrate que sea el param correcto
+      this.restaurantId = this.route.snapshot.paramMap.get('id') ?? ""; 
     } else {
       this.restaurantId = this.route.snapshot.paramMap.get('restaurantId')
         || this.route.snapshot.paramMap.get('id')

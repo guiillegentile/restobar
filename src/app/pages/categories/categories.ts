@@ -17,7 +17,7 @@ export class Categories implements OnInit {
   router = inject(Router);
   menuService = inject(MenuService);
   _categoryService = inject(CategoryService)
-cdr = inject(ChangeDetectorRef);
+  cdr = inject(ChangeDetectorRef);
 
   categories: any[] = [];
   isEditing = false;
